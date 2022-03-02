@@ -10,6 +10,7 @@ namespace HomeWork
         {
             Task1();
             Task2();
+            Task3();
         }
 
         #region Task 01
@@ -67,6 +68,46 @@ namespace HomeWork
             Console.WriteLine($"Индекс массы тела равен {bodyMassIndex:F1}.");
             Console.WriteLine("\nНажмите ENTER для продолжения . . .");
             Console.ReadLine();
+        }
+
+        #endregion
+
+        #region Task 03
+
+        /*
+            а) Написать программу, которая подсчитывает расстояние между точками
+        с координатами x1, y1 и x2,y2 
+        по формуле r=Math.Sqrt(Math.Pow(x2-x1,2)+Math.Pow(y2-y1,2). 
+        Вывести результат, используя спецификатор формата .2f (с двумя знаками после запятой);
+            б) *Выполнить предыдущее задание, оформив вычисления расстояния между точками в виде метода.
+         */
+
+        static void Task3()
+        {
+            Console.Title = "Расстояние между точками";
+            Console.Clear();
+            Console.WriteLine("Введите координаты первой точки:");
+            Console.Write("x1 - ");
+            double x1 = double.Parse(Console.ReadLine());
+            Console.Write("y1 - ");
+            double y1 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите координаты второй точки:");
+            Console.Write("x2 - ");
+            double x2 = double.Parse(Console.ReadLine());
+            Console.Write("y2 - ");
+            double y2 = double.Parse(Console.ReadLine());
+            double distance = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
+            Console.WriteLine("======================================");
+            Console.WriteLine($"а) Расстояние между точками А({x1};{y1}) и В({x2};{y2}): {distance:f2}");
+            distance = GetDistance(x1, y1, x2, y2);
+            Console.WriteLine($"б) Расстояние между точками А({x1};{y1}) и В({x2};{y2}): {distance:f2}");
+            Console.WriteLine("\nНажмите ENTER для продолжения . . .");
+            Console.ReadLine();
+        }
+
+        static double GetDistance(double x1, double y1, double x2, double y2)
+        {
+            return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
         }
 
         #endregion
