@@ -11,6 +11,7 @@ namespace HomeWork
             Task1();
             Task2();
             Task3();
+            Task4();
         }
 
         #region Task 01
@@ -108,6 +109,40 @@ namespace HomeWork
         static double GetDistance(double x1, double y1, double x2, double y2)
         {
             return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
+        }
+
+        #endregion
+
+        #region Task 04
+
+        /*
+            Написать программу обмена значениями двух переменных:
+                а) с использованием третьей переменной;
+	            б) *без использования третьей переменной.
+         */
+
+        static void Task4()
+        {
+            Console.Title = "Обмен значениями";
+            Console.Clear();
+            Console.Write("Введите первое число: ");
+            int firstNumber = int.Parse(Console.ReadLine());
+            Console.Write("Введите второе число: ");
+            int secondNumber = int.Parse(Console.ReadLine());
+            Console.WriteLine("До обмена значениями:");
+            Console.WriteLine($"\tпервое число - {firstNumber}\n\tвторое число - {secondNumber}");
+            Console.WriteLine("Обмен с использованием третьей переменной: ");
+            int tempNumber = firstNumber;
+            firstNumber = secondNumber;
+            secondNumber = tempNumber;
+            Console.WriteLine($"\tпервое число - {firstNumber}\n\tвторое число - {secondNumber}");
+            Console.WriteLine("Обмен без использования третьей переменной: ");
+            firstNumber ^= secondNumber;
+            secondNumber ^= firstNumber;
+            firstNumber ^= secondNumber;
+            Console.WriteLine($"\tпервое число - {firstNumber}\n\tвторое число - {secondNumber}");
+            Console.WriteLine("\nНажмите ENTER для продолжения . . .");
+            Console.ReadLine();
         }
 
         #endregion
