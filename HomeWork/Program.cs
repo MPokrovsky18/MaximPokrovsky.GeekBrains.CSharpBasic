@@ -8,11 +8,11 @@ namespace HomeWork
     {
         static void Main(string[] args)
         {
-            //Task1();
-            //Task2();
-            //Task3();
-            //Task4();
-            //Task5();
+            Task1();
+            Task2();
+            Task3();
+            Task4();
+            Task5();
         }
 
         #region Task 01
@@ -28,8 +28,7 @@ namespace HomeWork
 
         static void Task1()
         {
-            Console.Title = "Анкета";
-            Console.Clear();
+            Helper.StartProgrammSetting("Анкета");
             Console.Write("Введите Ваше имя: ");
             string firstName = Console.ReadLine();
             Console.Write("Введите Вашу фамилию: ");
@@ -44,8 +43,7 @@ namespace HomeWork
             Console.WriteLine("а) " + firstName + " " + lastName + " - полных лет: " + age + ", рост: " + hight + " см, вес: " + weight + " кг;");
             Console.WriteLine("б) {0} {1} - полных лет: {2}, рост: {3} см, вес: {4} кг;", firstName, lastName, age, hight, weight);
             Console.WriteLine($"в) {firstName} {lastName} - полных лет: {age}, рост: {hight} см, вес: {weight} кг;");
-            Console.WriteLine("\nНажмите ENTER для продолжения . . .");
-            Console.ReadLine();
+            Helper.Pause();
         }
 
         #endregion
@@ -60,16 +58,14 @@ namespace HomeWork
 
         static void Task2()
         {
-            Console.Title = "Расчет ИМТ";
-            Console.Clear();
+            Helper.StartProgrammSetting("Расчет ИМТ");
             Console.Write("Введите Ваш вес(кг): ");
             double mass = double.Parse(Console.ReadLine());
             Console.Write("Введите Ваш рост(см): ");
             double hight = double.Parse(Console.ReadLine()) / 100;
             double bodyMassIndex = mass / (hight * hight);
             Console.WriteLine($"Индекс массы тела равен {bodyMassIndex:F1}.");
-            Console.WriteLine("\nНажмите ENTER для продолжения . . .");
-            Console.ReadLine();
+            Helper.Pause();
         }
 
         #endregion
@@ -86,8 +82,7 @@ namespace HomeWork
 
         static void Task3()
         {
-            Console.Title = "Расстояние между точками";
-            Console.Clear();
+            Helper.StartProgrammSetting("Расстояние между точками");
             Console.WriteLine("Введите координаты первой точки:");
             Console.Write("x1 - ");
             double x1 = double.Parse(Console.ReadLine());
@@ -103,8 +98,7 @@ namespace HomeWork
             Console.WriteLine($"а) Расстояние между точками А({x1};{y1}) и В({x2};{y2}): {distance:f2}");
             distance = GetDistance(x1, y1, x2, y2);
             Console.WriteLine($"б) Расстояние между точками А({x1};{y1}) и В({x2};{y2}): {distance:f2}");
-            Console.WriteLine("\nНажмите ENTER для продолжения . . .");
-            Console.ReadLine();
+            Helper.Pause();
         }
 
         static double GetDistance(double x1, double y1, double x2, double y2)
@@ -124,8 +118,7 @@ namespace HomeWork
 
         static void Task4()
         {
-            Console.Title = "Обмен значениями";
-            Console.Clear();
+            Helper.StartProgrammSetting("Обмен значениями");
             Console.Write("Введите первое число: ");
             int firstNumber = int.Parse(Console.ReadLine());
             Console.Write("Введите второе число: ");
@@ -142,8 +135,7 @@ namespace HomeWork
             secondNumber ^= firstNumber;
             firstNumber ^= secondNumber;
             Console.WriteLine($"\tпервое число - {firstNumber}\n\tвторое число - {secondNumber}");
-            Console.WriteLine("\nНажмите ENTER для продолжения . . .");
-            Console.ReadLine();
+            Helper.Pause();
         }
 
         #endregion
@@ -158,8 +150,7 @@ namespace HomeWork
 
         static void Task5()
         {
-            Console.Title = "Вывод информации";
-            Console.Clear();
+            Helper.StartProgrammSetting("Вывод информации");
             Console.Write("Введите Ваше имя: ");
             string firstName = Console.ReadLine();
             Console.Write("Введите Вашу фамилию: ");
@@ -171,8 +162,7 @@ namespace HomeWork
             SubtaskB(firstName, lastName, cityName);
             SubtaskV(firstName, lastName, cityName);
             Console.SetCursorPosition(0, Console.WindowHeight - 2);
-            Console.WriteLine("\nНажмите ENTER для продолжения . . .");
-            Console.ReadLine();
+            Helper.Pause();
         }
 
         static void SubtaskA(string firstName, string lastName, string cityName)
@@ -186,25 +176,18 @@ namespace HomeWork
             int consoleCentrePointX = Console.WindowWidth / 2;
             int consoleCentrePointY = Console.WindowHeight / 2;
             int startTextPosition = consoleCentrePointX - info.Length / 2;
-            Console.SetCursorPosition(startTextPosition, consoleCentrePointY);
-            Console.WriteLine(info);
+            Helper.Print(info, startTextPosition, consoleCentrePointY);
         }
 
         static void SubtaskV(string firstName, string lastName, string cityName)
         {
             string info = GetInfoText(firstName, lastName, cityName);
-            Print(info, 20, 10);
+            Helper.Print(info, 20, 10);
         }
 
         static string GetInfoText(string firstName, string lastName, string cityName)
         {
             return $"в) {firstName} {lastName} - город {cityName}.";
-        }
-
-        static void Print(string message, int cursorPositionX, int cursorPositionY)
-        {
-            Console.SetCursorPosition(cursorPositionX, cursorPositionY);
-            Console.WriteLine(message);
         }
 
         #endregion
@@ -217,26 +200,21 @@ namespace HomeWork
         *Создать класс с методами, которые могут пригодиться в вашей учебе(Print, Pause).
     */
 
-    static class Helper
+    internal static class Helper
     {
-        static void Print(string message)
-        {
-            Console.WriteLine(message);
-        }
-
-        static void Print(string message, int cursorPositionX, int cursorPositionY)
+        public static void Print(string message, int cursorPositionX, int cursorPositionY)
         {
             Console.SetCursorPosition(cursorPositionX, cursorPositionY);
             Console.WriteLine(message);
         }
 
-        static void Pause()
+        public static void Pause()
         {
             Console.WriteLine("\nНажмите ENTER для продолжения . . .");
             Console.ReadLine();
         }
 
-        static void StartProgrammSetting(string title)
+        public static void StartProgrammSetting(string title)
         {
             Console.Title = title;
             Console.Clear();
