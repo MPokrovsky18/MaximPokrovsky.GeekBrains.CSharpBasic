@@ -12,6 +12,7 @@ namespace HomeWork
             Task2();
             Task3();
             Task4();
+            Task5();
         }
 
         #region Task 01
@@ -143,6 +144,67 @@ namespace HomeWork
             Console.WriteLine($"\tпервое число - {firstNumber}\n\tвторое число - {secondNumber}");
             Console.WriteLine("\nНажмите ENTER для продолжения . . .");
             Console.ReadLine();
+        }
+
+        #endregion
+
+        #region Task 05
+
+        /*
+                а) Написать программу, которая выводит на экран ваше имя, фамилию и город проживания.
+                б) *Сделать задание, только вывод организовать в центре экрана.
+                в) **Сделать задание б с использованием собственных методов(например, Print(string ms, int x, int y).
+        */
+
+        static void Task5()
+        {
+            Console.Title = "Вывод информации";
+            Console.Clear();
+            Console.Write("Введите Ваше имя: ");
+            string firstName = Console.ReadLine();
+            Console.Write("Введите Вашу фамилию: ");
+            string lastName = Console.ReadLine();
+            Console.Write("Введите Ваш город проживания: ");
+            string cityName = Console.ReadLine();
+            Console.WriteLine("======================================");
+            SubtaskA(firstName, lastName, cityName);
+            SubtaskB(firstName, lastName, cityName);
+            SubtaskV(firstName, lastName, cityName);
+            Console.SetCursorPosition(0, Console.WindowHeight - 2);
+            Console.WriteLine("\nНажмите ENTER для продолжения . . .");
+            Console.ReadLine();
+        }
+
+        static void SubtaskA(string firstName, string lastName, string cityName)
+        {
+            Console.WriteLine($"а) {firstName} {lastName} - город {cityName}.");
+        }
+
+        static void SubtaskB(string firstName, string lastName, string cityName)
+        {
+            string info = $"б) {firstName} {lastName} - город {cityName}.";
+            int consoleCentrePointX = Console.WindowWidth / 2;
+            int consoleCentrePointY = Console.WindowHeight / 2;
+            int startTextPosition = consoleCentrePointX - info.Length / 2;
+            Console.SetCursorPosition(startTextPosition, consoleCentrePointY);
+            Console.WriteLine(info);
+        }
+
+        static void SubtaskV(string firstName, string lastName, string cityName)
+        {
+            string info = GetInfoText(firstName, lastName, cityName);
+            Print(info, 20, 10);
+        }
+
+        static string GetInfoText(string firstName, string lastName, string cityName)
+        {
+            return $"в) {firstName} {lastName} - город {cityName}.";
+        }
+
+        static void Print(string message, int cursorPositionX, int cursorPositionY)
+        {
+            Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+            Console.WriteLine(message);
         }
 
         #endregion
