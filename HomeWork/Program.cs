@@ -8,11 +8,11 @@ namespace HomeWork
     {
         static void Main(string[] args)
         {
-            Task1();
-            Task2();
-            Task3();
-            Task4();
-            Task5();
+            //Task1();
+            //Task2();
+            //Task3();
+            //Task4();
+            //Task5();
         }
 
         #region Task 01
@@ -208,5 +208,41 @@ namespace HomeWork
         }
 
         #endregion
+
     }
+
+    #region Task 06
+
+    /*
+        *Создать класс с методами, которые могут пригодиться в вашей учебе(Print, Pause).
+    */
+
+    static class Helper
+    {
+        static void Print(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        static void Print(string message, int cursorPositionX, int cursorPositionY)
+        {
+            Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+            Console.WriteLine(message);
+        }
+
+        static void Pause()
+        {
+            Console.WriteLine("\nНажмите ENTER для продолжения . . .");
+            Console.ReadLine();
+        }
+
+        static void StartProgrammSetting(string title)
+        {
+            Console.Title = title;
+            Console.Clear();
+        }
+    }
+
+    #endregion
+
 }
