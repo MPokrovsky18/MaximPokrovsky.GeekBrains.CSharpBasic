@@ -1,4 +1,5 @@
 ﻿using System;
+using MP.Utils;
 
 
 namespace HomeWork
@@ -11,27 +12,6 @@ namespace HomeWork
 
         }
 
-    }
-
-    internal static class Helper
-    {
-        public static void Print(string message, int cursorPositionX, int cursorPositionY)
-        {
-            Console.SetCursorPosition(cursorPositionX, cursorPositionY);
-            Console.WriteLine(message);
-        }
-
-        public static void Pause()
-        {
-            Console.WriteLine("\nНажмите ENTER для продолжения . . .");
-            Console.ReadLine();
-        }
-
-        public static void StartProgrammSetting(string title)
-        {
-            Console.Title = title;
-            Console.Clear();
-        }
     }
 
 }
