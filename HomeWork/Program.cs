@@ -11,7 +11,8 @@ namespace HomeWork
         {
             //Task1();
             //Task2();
-            Task3();
+            //Task3();
+            Task4();
         }
 
         #region Task 01
@@ -135,6 +136,79 @@ namespace HomeWork
 
         #endregion
 
+        #region Task 04
+
+        /*
+                Реализовать метод проверки логина и пароля. На вход метода подается логин и пароль. 
+            На выходе истина, если прошел авторизацию, и ложь, если не прошел (Логин: root, Password: GeekBrains). 
+            Используя метод проверки логина и пароля, написать программу: 
+                пользователь вводит логин и пароль, программа пропускает его дальше или не пропускает. 
+            С помощью цикла do while ограничить ввод пароля тремя попытками.
+         */
+
+        static void Task4()
+        {
+            ConsoleHelper.StartSettings("Авторизация");
+
+            if (CheckAuthorization() == true)
+            {
+                Console.WriteLine("Доступ к программе открыт.");
+            }
+            else
+            {
+                Console.WriteLine("Доступ к программе закрыт.");
+            }
+
+            ConsoleHelper.Pause();
+        }
+
+        static bool CheckAuthorization()
+        {
+            int attemptsCount = 3;
+            bool isCorrectInput = false;
+            string userInputLogin;
+            string userInputPassword;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine($"Попыток авторизоваться: {attemptsCount}");
+                Console.WriteLine("======================");
+                Console.Write("Введите логин: ");
+                userInputLogin = Console.ReadLine();
+                Console.Write("Введите пароль: ");
+                userInputPassword = Console.ReadLine();
+                Console.WriteLine("======================");
+                isCorrectInput = VerifyLoginAndPassword(userInputLogin, userInputPassword);
+
+                if (isCorrectInput)
+                {
+                    Console.WriteLine("Авторизация выполнена успешно!");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Неверный логин или пароль.");
+                    attemptsCount--;
+                    ConsoleHelper.Pause();
+                }
+
+            }
+            while (attemptsCount > 0);
+
+            Console.Clear();
+            Console.WriteLine("Закончились попытки авторизации. Попробуйте позднее.");
+            return false;
+        }
+
+        static bool VerifyLoginAndPassword(string enteredLogin, string enteredPassword)
+        {
+            string login = "root";
+            string password = "GeekBrains";
+            return enteredLogin == login && enteredPassword == password;
+        }
+
+        #endregion
     }
 
 }
