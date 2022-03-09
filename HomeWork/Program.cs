@@ -12,7 +12,8 @@ namespace HomeWork
             //Task1();
             //Task2();
             //Task3();
-            Task4();
+            //Task4();
+            Task5();
         }
 
         #region Task 01
@@ -209,6 +210,75 @@ namespace HomeWork
         }
 
         #endregion
-    }
 
+        #region Task 05
+
+        /*
+                а) Написать программу, которая запрашивает массу и рост человека, 
+                    вычисляет его индекс массы и сообщает, 
+                    нужно ли человеку похудеть, набрать вес или всё в норме.
+                б) *Рассчитать, на сколько кг похудеть или сколько кг набрать для нормализации веса.
+         */
+
+        static void Task5()
+        {
+            ConsoleHelper.StartSettings("Индекс массы тела");
+            double lowerBorderNormalBMI = 18.5;
+            double upperBorderNormalBMI = 25;
+            Console.Write("Введите Ваш вес(кг): ");
+            double mass = double.Parse(Console.ReadLine());
+            Console.Write("Введите Ваш рост(см): ");
+            double hight = double.Parse(Console.ReadLine()) / 100;
+            Console.WriteLine("===========================");
+            ShowBMIInfo(mass, hight, lowerBorderNormalBMI, upperBorderNormalBMI);
+            ConsoleHelper.Pause();
+        }
+
+        static void ShowBMIInfo(double mass, double hight, double lowerBorderNormalBMI, double upperBorderNormalBMI)
+        {
+            double bodyMassIndex = GetBodyMassIndex(mass, hight);
+            double targetBodyMassIndex = GetTargetBodyMassIndex(bodyMassIndex, lowerBorderNormalBMI, upperBorderNormalBMI);
+            string info = $"Индекс массы Вашего тела - {bodyMassIndex:F2}.";
+
+            if (targetBodyMassIndex > 0)
+            {
+                info += "\nДо нормы Вам необходимо ";
+                double differenceWeight = GetDifferenceWeight(mass, hight, targetBodyMassIndex);
+                info += (differenceWeight < 0) ? "набрать " : "сбросить ";
+                info += $"{Math.Abs(differenceWeight):F1} кг.";
+            }
+            else
+            {
+                info += "\nВаш вес в пределах нормы.";
+            }
+
+            Console.WriteLine(info);
+        }
+
+        static double GetBodyMassIndex(double mass, double hight)
+        {
+            return mass / (hight * hight);
+        }
+
+        static double GetTargetBodyMassIndex(double currentBMI, double lowerBorder, double upperBorder)
+        {
+            if (currentBMI < lowerBorder)
+            {
+                return lowerBorder;
+            }
+            else if (currentBMI > upperBorder)
+            {
+                return upperBorder;
+            }
+
+            return 0;
+        }
+
+        static double GetDifferenceWeight(double currentWeight, double hight, double targetBMI)
+        {
+            return currentWeight - (targetBMI * hight * hight);
+        }
+
+        #endregion
+    }
 }
