@@ -10,7 +10,8 @@ namespace HomeWork
         static void Main(string[] args)
         {
             //Task1();
-            Task2();
+            //Task2();
+            Task3();
         }
 
         #region Task 01
@@ -84,6 +85,52 @@ namespace HomeWork
             }
 
             return count;
+        }
+
+        #endregion
+
+        #region Task 03
+
+        /*
+                С клавиатуры вводятся числа, пока не будет введен 0. 
+                Подсчитать сумму всех нечетных положительных чисел.
+         */
+
+        static void Task3()
+        {
+            ConsoleHelper.StartSettings("Cумма нечетных положительных чисел");
+            Console.WriteLine("Вводите числа. Чтобы прервать ввод и подсчитать сумму всех положительных нечетных чисел - введите 0.");
+            Console.WriteLine("================================");
+            int sum = GetSumOddNumbers();
+            Console.WriteLine("================================");
+            Console.WriteLine("Сумма положительных нечетных чисел равна " + sum);
+            ConsoleHelper.Pause();
+        }
+
+        static int GetSumOddNumbers()
+        {
+            int userInput;
+            int sum = 0;
+
+            do
+            {
+                Console.Write("Введите число: ");
+                userInput = int.Parse(Console.ReadLine());
+
+                if (userInput > 0 && IsOdd(userInput))
+                {
+                    sum += userInput;
+                }
+
+            }
+            while (userInput != 0);
+
+            return sum;
+        }
+
+        static bool IsOdd(int number)
+        {
+            return number % 2 != 0;
         }
 
         #endregion
