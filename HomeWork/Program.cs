@@ -9,12 +9,68 @@ namespace HomeWork
     {
         static void Main(string[] args)
         {
-            //Task1();
-            //Task2();
-            //Task3();
-            //Task4();
-            Task5();
+            ConsoleHelper.StartSettings("Начало программы");
+            Console.WriteLine("Добро пожаловать! Для продолжения необходимо выполнить авторизацю.");
+            ConsoleHelper.Pause();
+
+            if (CheckAuthorization())
+            {
+                ShowMenu();
+            }
+
+            Console.Clear();
+            Console.WriteLine("Программа завершена.");
+            ConsoleHelper.Pause();
         }
+
+        #region Menu
+
+        static void ShowMenu()
+        {
+            string nameTask1 = "Минимальное из трёх чисел";
+            string nameTask2 = "Подсчет количества цифр";
+            string nameTask3 = "Cумма нечетных положительных чисел";
+            string nameTask4 = "Авторизация";
+            string nameTask5 = "Индекс массы тела";
+            bool isExecute = true;
+
+            while (isExecute)
+            {
+                ConsoleHelper.StartSettings("Меню");
+                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n3. {nameTask3}\n4. {nameTask4}\n5. {nameTask5}\n\tДля выхода введите 0");
+                Console.Write("Введите номер программы: ");
+
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        Task1(nameTask1);
+                        break;
+                    case "2":
+                        Task2(nameTask2);
+                        break;
+                    case "3":
+                        Task3(nameTask3);
+                        break;
+                    case "4":
+                        Task4(nameTask4);
+                        break;
+                    case "5":
+                        Task5(nameTask5);
+                        break;
+                    case "0":
+                        isExecute = false;
+                        Console.WriteLine("Выполнен выход из меню.");
+                        break;
+                    default:
+                        Console.WriteLine("Некорректный ввод.");
+                        break;
+                }
+
+                ConsoleHelper.Pause();
+            }
+        }
+
+        #endregion
 
         #region Task 01
 
@@ -22,9 +78,9 @@ namespace HomeWork
                 Написать метод, возвращающий минимальное из трёх чисел. 
          */
 
-        static void Task1()
+        static void Task1(string taskName)
         {
-            ConsoleHelper.StartSettings("Минимальное из трёх чисел");
+            ConsoleHelper.StartSettings(taskName);
             Console.Write("Введите первое число: ");
             int a = int.Parse(Console.ReadLine());
             Console.Write("Введите второе число: ");
@@ -33,7 +89,6 @@ namespace HomeWork
             int c = int.Parse(Console.ReadLine());
             int minimum = GetMinimum(a, b, c);
             Console.WriteLine($"Из чисел {a}, {b} и {c} минимальное: {minimum}");
-            ConsoleHelper.Pause();
         }
 
         static int GetMinimum(int a, int b, int c)
@@ -61,14 +116,13 @@ namespace HomeWork
                 Написать метод подсчета количества цифр числа.
          */
 
-        static void Task2()
+        static void Task2(string taskName)
         {
-            ConsoleHelper.StartSettings("Подсчет количества цифр");
+            ConsoleHelper.StartSettings(taskName);
             Console.Write("Введите число: ");
             int number = int.Parse(Console.ReadLine());
             int count = GetNumberOfDigits(number);
             Console.WriteLine($"В числе {number} количество цифр равно {count}.");
-            ConsoleHelper.Pause();
         }
 
         static int GetNumberOfDigits(long number)
@@ -98,15 +152,14 @@ namespace HomeWork
                 Подсчитать сумму всех нечетных положительных чисел.
          */
 
-        static void Task3()
+        static void Task3(string taskName)
         {
-            ConsoleHelper.StartSettings("Cумма нечетных положительных чисел");
+            ConsoleHelper.StartSettings(taskName);
             Console.WriteLine("Вводите числа. Чтобы прервать ввод и подсчитать сумму всех положительных нечетных чисел - введите 0.");
             Console.WriteLine("================================");
             int sum = GetSumOddNumbers();
             Console.WriteLine("================================");
             Console.WriteLine("Сумма положительных нечетных чисел равна " + sum);
-            ConsoleHelper.Pause();
         }
 
         static int GetSumOddNumbers()
@@ -147,9 +200,9 @@ namespace HomeWork
             С помощью цикла do while ограничить ввод пароля тремя попытками.
          */
 
-        static void Task4()
+        static void Task4(string taskName)
         {
-            ConsoleHelper.StartSettings("Авторизация");
+            ConsoleHelper.StartSettings(taskName);
 
             if (CheckAuthorization() == true)
             {
@@ -159,8 +212,6 @@ namespace HomeWork
             {
                 Console.WriteLine("Доступ к программе закрыт.");
             }
-
-            ConsoleHelper.Pause();
         }
 
         static bool CheckAuthorization()
@@ -220,9 +271,9 @@ namespace HomeWork
                 б) *Рассчитать, на сколько кг похудеть или сколько кг набрать для нормализации веса.
          */
 
-        static void Task5()
+        static void Task5(string taskName)
         {
-            ConsoleHelper.StartSettings("Индекс массы тела");
+            ConsoleHelper.StartSettings(taskName);
             double lowerBorderNormalBMI = 18.5;
             double upperBorderNormalBMI = 25;
             Console.Write("Введите Ваш вес(кг): ");
@@ -231,7 +282,6 @@ namespace HomeWork
             double hight = double.Parse(Console.ReadLine()) / 100;
             Console.WriteLine("===========================");
             ShowBMIInfo(mass, hight, lowerBorderNormalBMI, upperBorderNormalBMI);
-            ConsoleHelper.Pause();
         }
 
         static void ShowBMIInfo(double mass, double hight, double lowerBorderNormalBMI, double upperBorderNormalBMI)
