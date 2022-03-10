@@ -33,12 +33,13 @@ namespace HomeWork
             string nameTask4 = "Авторизация";
             string nameTask5 = "Индекс массы тела";
             string nameTask6 = "\"Хорошие\" числа";
+            string nameTask7 = "Рекурсия";
             bool isExecute = true;
 
             while (isExecute)
             {
                 ConsoleHelper.StartSettings("Меню");
-                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n3. {nameTask3}\n4. {nameTask4}\n5. {nameTask5}\n6. {nameTask6}\n\tДля выхода введите 0");
+                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n3. {nameTask3}\n4. {nameTask4}\n5. {nameTask5}\n6. {nameTask6}\n7. {nameTask7}\n\tДля выхода введите 0");
                 Console.Write("Введите номер программы: ");
 
                 switch (Console.ReadLine())
@@ -60,6 +61,9 @@ namespace HomeWork
                         break;
                     case "6":
                         Task6(nameTask6);
+                        break;
+                    case "7":
+                        Task7(nameTask7);
                         break;
                     case "0":
                         isExecute = false;
@@ -363,6 +367,46 @@ namespace HomeWork
         static bool CheckIsGoodNumber(long number)
         {
             return number % GetNumberOfDigits(number) == 0;
+        }
+
+        #endregion
+
+        #region Task 07
+
+        /*
+                a) Разработать рекурсивный метод, который выводит на экран числа от a до b(a<b).
+                б) *Разработать рекурсивный метод, который считает сумму чисел от a до b.
+         */
+
+        static void Task7(string taskName)
+        {
+            ConsoleHelper.StartSettings(taskName);
+            Console.Write("Введите первое число: ");
+            int a = int.Parse(Console.ReadLine());
+            Console.Write("Введите второе число: ");
+            int b = int.Parse(Console.ReadLine());
+            ShowNumbers(a, b);
+            Console.WriteLine("Сумма чисел: " + SumNumbers(a, b));
+        }
+
+        static void ShowNumbers(int a, int b)
+        {
+            Console.WriteLine(a);
+
+            if(a < b)
+            {
+                ShowNumbers(a + 1, b);
+            }
+        }
+
+        static int SumNumbers(int a, int b)
+        {
+            if(a < b)
+            {
+                return a + SumNumbers(a + 1, b);
+            }
+
+            return a;
         }
 
         #endregion
