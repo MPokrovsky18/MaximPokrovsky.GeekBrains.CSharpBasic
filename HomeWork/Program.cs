@@ -32,12 +32,13 @@ namespace HomeWork
             string nameTask3 = "Cумма нечетных положительных чисел";
             string nameTask4 = "Авторизация";
             string nameTask5 = "Индекс массы тела";
+            string nameTask6 = "\"Хорошие\" числа";
             bool isExecute = true;
 
             while (isExecute)
             {
                 ConsoleHelper.StartSettings("Меню");
-                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n3. {nameTask3}\n4. {nameTask4}\n5. {nameTask5}\n\tДля выхода введите 0");
+                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n3. {nameTask3}\n4. {nameTask4}\n5. {nameTask5}\n6. {nameTask6}\n\tДля выхода введите 0");
                 Console.Write("Введите номер программы: ");
 
                 switch (Console.ReadLine())
@@ -56,6 +57,9 @@ namespace HomeWork
                         break;
                     case "5":
                         Task5(nameTask5);
+                        break;
+                    case "6":
+                        Task6(nameTask6);
                         break;
                     case "0":
                         isExecute = false;
@@ -127,18 +131,14 @@ namespace HomeWork
 
         static int GetNumberOfDigits(long number)
         {
-            if (number == 0)
-            {
-                return 1;
-            }
-
             int count = 0;
 
-            while (number > 0)
+            do
             {
-                number /= 10;
                 count++;
+                number /= 10;
             }
+            while (number != 0);
 
             return count;
         }
@@ -327,6 +327,42 @@ namespace HomeWork
         static double GetDifferenceWeight(double currentWeight, double hight, double targetBMI)
         {
             return currentWeight - (targetBMI * hight * hight);
+        }
+
+        #endregion
+
+        #region Task 06
+
+        /*
+            Написать программу подсчета количества «хороших» чисел в диапазоне от 1 до 1 000 000 000. 
+            «Хорошим» называется число, которое делится на сумму своих цифр. 
+            Реализовать подсчёт времени выполнения программы, используя структуру DateTime.
+         */
+
+        static void Task6(string taskName)
+        {
+            ConsoleHelper.StartSettings(taskName);
+            int startNumber = 1;
+            int endNumber = 1_000_000_000;
+            int count = 0;
+            DateTime start = DateTime.Now;
+
+            for (int i = startNumber; i <= endNumber; i++)
+            {
+                if (CheckIsGoodNumber(i))
+                {
+                    count++;
+                }
+            }
+
+            DateTime end = DateTime.Now;
+            Console.WriteLine($"В диапозоне от {startNumber} до {endNumber} \"хороших чисел\": {count} шт.");
+            Console.WriteLine($"Время, затраченное на выполнение программы: {(end - start)}");
+        }
+
+        static bool CheckIsGoodNumber(long number)
+        {
+            return number % GetNumberOfDigits(number) == 0;
         }
 
         #endregion
