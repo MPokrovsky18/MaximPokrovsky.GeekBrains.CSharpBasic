@@ -3,7 +3,7 @@
 
 namespace MP.Utils
 {
-    internal class ConsoleHelper
+    public class ConsoleHelper
     {
         public static void PrintOnPosition(string message, int cursorPositionX, int cursorPositionY)
         {
