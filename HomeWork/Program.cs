@@ -173,19 +173,38 @@ namespace HomeWork
             _re = re;
         }
 
-        public ComplexCl Plus(ComplexCl x2)
+        public ComplexCl Plus(ComplexCl x)
         {
-            double im = x2.Im + _im;
-            double re = x2.Re + _re;
+            double im = x.Im + _im;
+            double re = x.Re + _re;
             return new ComplexCl(im, re);
         }
 
+        public ComplexCl Minus(ComplexCl x)
+        {
+            double im = _im - x.Im;
+            double re = _re - x.Re;
+            return new ComplexCl(im, re);
+        }
+
+        public ComplexCl Multi(ComplexCl x)
+        {
+            double im = _re * x.Im + _im * x.Re;
+            double re = _re * x.Re - _im * x.Im;
+            return new ComplexCl(im, re);
+        }
+
+        public ComplexCl Devide(ComplexCl x)
+        {
+            double denominator = Math.Pow(x.Re, 2) + Math.Pow(x.Im, 2);
+            double im = (x.Re * _im - _re * x.Im) / denominator;
+            double re = (_re * x.Re + _im * x.Im) / denominator;
+            return new ComplexCl(im, re);
+        }
 
         public string ToString()
         {
-            return _re + "+" + _im + "i";
+            return (_im < 0) ? _re + " - " + Math.Abs(_im) + "i" : _re + " + " + _im + "i";
         }
     }
-
-
 }
