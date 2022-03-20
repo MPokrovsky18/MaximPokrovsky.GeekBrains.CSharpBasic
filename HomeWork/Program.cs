@@ -95,6 +95,23 @@ namespace HomeWork
             return y;
         }
 
+        public Complex Minus(Complex x)
+        {
+            Complex y;
+            y.im = im - x.im;
+            y.re = re - x.re;
+            return y;
+        }
+
+        public Complex Divide(Complex x)
+        {
+            Complex y;
+            double denominator = Math.Pow(x.re, 2) + Math.Pow(x.im, 2);
+            y.im = (x.re * im - re * x.im) / denominator;
+            y.re = (re * x.re + im * x.im) / denominator;
+            return y;
+        }
+
         public string ToString()
         {
             return re + "+" + im + "i";
