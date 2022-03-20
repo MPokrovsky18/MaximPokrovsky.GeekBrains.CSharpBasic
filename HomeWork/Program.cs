@@ -13,7 +13,6 @@ namespace HomeWork
             //ShowMenu();
             //Console.Clear();
             //Console.WriteLine("Программа завершена.");
-            Task1("Комплексные числа");
             ConsoleHelper.Pause();
         }
 
@@ -21,7 +20,7 @@ namespace HomeWork
 
         static void ShowMenu()
         {
-            string nameTask1 = "";
+            string nameTask1 = "Комплексные числа";
             string nameTask2 = "";
             string nameTask3 = "";
 
@@ -36,6 +35,7 @@ namespace HomeWork
                 switch (Console.ReadLine())
                 {
                     case "1":
+                        Task1(nameTask1);
                         break;
                     case "2":
                         break;
@@ -69,38 +69,124 @@ namespace HomeWork
         {
             ConsoleHelper.StartSettings(taskName);
             Random random = new Random();
-
             double re1 = random.Next(1, 11);
             double re2 = random.Next(1, 11);
             double im1 = random.Next(1, 11);
             double im2 = random.Next(1, 11);
-
             ComplexSt xSt, ySt;
             xSt.re = re1;
             xSt.im = im1;
             ySt.re = re2;
             ySt.im = im2;
-            Console.WriteLine("Структуры ComplexSt\n");
-            Console.WriteLine("Первое комплексное число: " + xSt.ToString());
-            Console.WriteLine("Второе комплексное число: " + ySt.ToString());
-            Console.WriteLine("Сумма: {0}", xSt.Plus(ySt).ToString());
-            Console.WriteLine("Разность: {0}", xSt.Minus(ySt).ToString());
-            Console.WriteLine("Произведение: {0}", xSt.Multi(ySt).ToString());
-            Console.WriteLine("Частное: {0}", xSt.Divide(ySt).ToString());
+            ShowResultsOfOperations(xSt, ySt);
             Console.WriteLine("================================");
-            Console.WriteLine("Экземпляры класса ComplexCl\n");
             ComplexCl xCl = new ComplexCl();
             ComplexCl yCl = new ComplexCl();
             xCl.Re = re1;
             xCl.Im = im1;
             yCl.Re = re2;
             yCl.Im = im2;
-            Console.WriteLine("Первое комплексное число: " + xCl.ToString());
-            Console.WriteLine("Второе комплексное число: " + yCl.ToString());
-            Console.WriteLine("Сумма: {0}", xCl.Plus(yCl).ToString());
-            Console.WriteLine("Разность: {0}", xCl.Minus(yCl).ToString());
-            Console.WriteLine("Произведение: {0}", xCl.Multi(yCl).ToString());
-            Console.WriteLine("Частное: {0}", xCl.Divide(yCl).ToString());
+            ShowResultsOfOperations(xCl, yCl);
+            ConsoleHelper.Pause();
+            bool isRepit;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Первое комплексное число_____________");
+                ComplexCl x = GetComplexNumber();
+                Console.WriteLine("Второе комплексное число_____________");
+                ComplexCl y = GetComplexNumber();
+                ExecuteOperations(x, y);
+                Console.Clear();
+                Console.Write("Ввести новые числа? (y/n): ");
+                isRepit = Console.ReadLine().ToLower() == "y" ? true : false;
+            }
+            while (isRepit);
+
+            Console.WriteLine("Приложение \"{0}\" завершено.", taskName);
+        }
+
+        static void ExecuteOperations(ComplexCl x, ComplexCl y)
+        {
+            bool isCompleted = false;
+
+            while (isCompleted == false)
+            {
+                Console.Clear();
+                Console.WriteLine("Комплексных числа: " + x.ToString() + " и " + y.ToString());
+                Console.WriteLine("Выберите операцию: ");
+                Console.Write("1. Сложение\n2. Вычетание\n3. Умножение\n4. Деление\n0. Завершить операции\nВведите номер операции: ");
+
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        Console.WriteLine("Сумма чисел: {0}", x.Plus(y).ToString());
+                        break;
+                    case "2":
+                        Console.WriteLine("Разность чисел: {0}", x.Minus(y).ToString());
+                        break;
+                    case "3":
+                        Console.WriteLine("Произведение чисел: {0}", x.Multi(y).ToString());
+                        break;
+                    case "4":
+                        Console.WriteLine("Частное чисел: {0}", x.Divide(y).ToString());
+                        break;
+                    case "0":
+                        isCompleted = true;
+                        break;
+                    default:
+                        Console.WriteLine("Некорректный ввод!");
+                        break;
+                }
+
+                ConsoleHelper.Pause();
+            }
+        }
+
+        static ComplexCl GetComplexNumber()
+        {
+            double re, im;
+            re = GetCorrectNumber(nameof(re));
+            im = GetCorrectNumber(nameof(im));
+            return new ComplexCl(im, re);
+        }
+
+        static double GetCorrectNumber(string name)
+        {
+            double number;
+            bool isCorrectInput;
+
+            do
+            {
+                Console.Write($"Введите {name}: ");
+                isCorrectInput = double.TryParse(Console.ReadLine(), out number);
+            }
+            while (isCorrectInput == false);
+
+            return number;
+        }
+
+        static void ShowResultsOfOperations(ComplexSt x, ComplexSt y)
+        {
+            Console.WriteLine("Структуры ComplexSt\n");
+            Console.WriteLine("Первое комплексное число: " + x.ToString());
+            Console.WriteLine("Второе комплексное число: " + y.ToString());
+            Console.WriteLine("Сумма: {0}", x.Plus(y).ToString());
+            Console.WriteLine("Разность: {0}", x.Minus(y).ToString());
+            Console.WriteLine("Произведение: {0}", x.Multi(y).ToString());
+            Console.WriteLine("Частное: {0}", x.Divide(y).ToString());
+        }
+
+        static void ShowResultsOfOperations(ComplexCl x, ComplexCl y)
+        {
+            Console.WriteLine("Экземпляры класса ComplexCl\n");
+            Console.WriteLine("Первое комплексное число: " + x.ToString());
+            Console.WriteLine("Второе комплексное число: " + y.ToString());
+            Console.WriteLine("Сумма: {0}", x.Plus(y).ToString());
+            Console.WriteLine("Разность: {0}", x.Minus(y).ToString());
+            Console.WriteLine("Произведение: {0}", x.Multi(y).ToString());
+            Console.WriteLine("Частное: {0}", x.Divide(y).ToString());
         }
 
         #endregion
