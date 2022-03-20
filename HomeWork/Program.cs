@@ -68,7 +68,7 @@ namespace HomeWork
         static void Task1(string taskName)
         {
             ConsoleHelper.StartSettings(taskName);
-            Complex x, y;
+            ComplexSt x, y;
             Random random = new Random();
             x.re = random.Next(1, 11);
             x.im = random.Next(1, 11);
@@ -86,38 +86,38 @@ namespace HomeWork
 
     }
 
-    public struct Complex
+    public struct ComplexSt
     {
         public double im;
         public double re;
 
-        public Complex Plus(Complex x)
+        public ComplexSt Plus(ComplexSt x)
         {
-            Complex y;
+            ComplexSt y;
             y.im = im + x.im;
             y.re = re + x.re;
             return y;
         }
 
-        public Complex Multi(Complex x)
+        public ComplexSt Multi(ComplexSt x)
         {
-            Complex y;
+            ComplexSt y;
             y.im = re * x.im + im * x.re;
             y.re = re * x.re - im * x.im;
             return y;
         }
 
-        public Complex Minus(Complex x)
+        public ComplexSt Minus(ComplexSt x)
         {
-            Complex y;
+            ComplexSt y;
             y.im = im - x.im;
             y.re = re - x.re;
             return y;
         }
 
-        public Complex Divide(Complex x)
+        public ComplexSt Divide(ComplexSt x)
         {
-            Complex y;
+            ComplexSt y;
             double denominator = Math.Pow(x.re, 2) + Math.Pow(x.im, 2);
             y.im = (x.re * im - re * x.im) / denominator;
             y.re = (re * x.re + im * x.im) / denominator;
@@ -129,5 +129,63 @@ namespace HomeWork
             return (im < 0) ? re + " - " + Math.Abs(im) + "i" : re + " + " + im + "i";
         }
     }
+
+    public class ComplexCl
+    {
+        private double _im;
+        private double _re;
+
+        public double Im
+        {
+            get
+            {
+                return _im;
+            }
+            set
+            {
+                if (value != 0)
+                {
+                    _im = value;
+                }
+            }
+        }
+        public double Re
+        {
+            get
+            {
+                return _re;
+            }
+            set
+            {
+                _re = value;
+            }
+        }
+
+        public ComplexCl()
+        {
+            _im = 0;
+            _re = 0;
+        }
+
+        public ComplexCl(double im, double re)
+        {
+            _im = im;
+            _re = re;
+        }
+
+        public ComplexCl Plus(ComplexCl x2)
+        {
+            double im = x2.Im + _im;
+            double re = x2.Re + _re;
+            return new ComplexCl(im, re);
+        }
+
+
+        public string ToString()
+        {
+            return _re + "+" + _im + "i";
+        }
+    }
+
 
 }
