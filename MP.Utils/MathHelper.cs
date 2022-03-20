@@ -16,7 +16,7 @@
             return count;
         }
 
-        static bool CheckOddNumber(int number)
+         public static bool CheckOddNumber(int number)
         {
             return number % 2 != 0;
         }

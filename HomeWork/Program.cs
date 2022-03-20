@@ -21,7 +21,7 @@ namespace HomeWork
         static void ShowMenu()
         {
             string nameTask1 = "Комплексные числа";
-            string nameTask2 = "";
+            string nameTask2 = "Сумма нечетных чисел";
             string nameTask3 = "";
 
             bool isExecute = true;
@@ -38,6 +38,7 @@ namespace HomeWork
                         Task1(nameTask1);
                         break;
                     case "2":
+                        Task2(nameTask2);
                         break;
                     case "3":
                         break;
@@ -191,6 +192,47 @@ namespace HomeWork
 
         #endregion
 
+        #region Task 02
+
+        /*
+            а)  С клавиатуры вводятся числа, пока не будет введён 0 (каждое число в новой строке).
+                Требуется подсчитать сумму всех нечётных положительных чисел. 
+                Сами числа и сумму вывести на экран, используя tryParse.
+         */
+
+        static void Task2(string taskName)
+        {
+            ConsoleHelper.StartSettings(taskName);
+            Console.WriteLine("Старт программы. Для завершения введите 0.");
+            int sum = 0;
+            bool isCompleted = false;
+
+            while (isCompleted == false)
+            {
+                Console.Write("Введите число: ");
+
+                if (int.TryParse(Console.ReadLine(), out int userInput))
+                {
+                    if (MathHelper.CheckOddNumber(userInput) && userInput > 0)
+                    {
+                        sum += userInput;
+                    }
+                    else if(userInput == 0)
+                    {
+                        isCompleted = true;
+                        Console.WriteLine("Ввод окончен.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Некорректный ввод!");
+                }
+            }
+
+            Console.WriteLine("Сумма нечетных положительных чисел: " + sum);
+        }
+
+        #endregion
     }
 
     public struct ComplexSt
