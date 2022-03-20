@@ -13,6 +13,7 @@ namespace HomeWork
             //ShowMenu();
             //Console.Clear();
             //Console.WriteLine("Программа завершена.");
+            Task1("Комплексные числа");
             ConsoleHelper.Pause();
         }
 
@@ -67,7 +68,18 @@ namespace HomeWork
         static void Task1(string taskName)
         {
             ConsoleHelper.StartSettings(taskName);
-
+            Complex x, y;
+            Random random = new Random();
+            x.re = random.Next(1, 11);
+            x.im = random.Next(1, 11);
+            y.re = random.Next(1, 11);
+            y.im = random.Next(1, 11);
+            Console.WriteLine("Первое комплексное число: " + x.ToString());
+            Console.WriteLine("Второе комплексное число: " + y.ToString());
+            Console.WriteLine("Сумма: {0}", x.Plus(y).ToString());
+            Console.WriteLine("Разность: {0}", x.Minus(y).ToString());
+            Console.WriteLine("Произведение: {0}", x.Multi(y).ToString());
+            Console.WriteLine("Частное: {0}", x.Divide(y).ToString());
         }
 
         #endregion
@@ -114,7 +126,7 @@ namespace HomeWork
 
         public string ToString()
         {
-            return re + "+" + im + "i";
+            return (im < 0) ? re + " - " + Math.Abs(im) + "i" : re + " + " + im + "i";
         }
     }
 
