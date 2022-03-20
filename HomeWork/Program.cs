@@ -68,18 +68,39 @@ namespace HomeWork
         static void Task1(string taskName)
         {
             ConsoleHelper.StartSettings(taskName);
-            ComplexSt x, y;
             Random random = new Random();
-            x.re = random.Next(1, 11);
-            x.im = random.Next(1, 11);
-            y.re = random.Next(1, 11);
-            y.im = random.Next(1, 11);
-            Console.WriteLine("Первое комплексное число: " + x.ToString());
-            Console.WriteLine("Второе комплексное число: " + y.ToString());
-            Console.WriteLine("Сумма: {0}", x.Plus(y).ToString());
-            Console.WriteLine("Разность: {0}", x.Minus(y).ToString());
-            Console.WriteLine("Произведение: {0}", x.Multi(y).ToString());
-            Console.WriteLine("Частное: {0}", x.Divide(y).ToString());
+
+            double re1 = random.Next(1, 11);
+            double re2 = random.Next(1, 11);
+            double im1 = random.Next(1, 11);
+            double im2 = random.Next(1, 11);
+
+            ComplexSt xSt, ySt;
+            xSt.re = re1;
+            xSt.im = im1;
+            ySt.re = re2;
+            ySt.im = im2;
+            Console.WriteLine("Структуры ComplexSt\n");
+            Console.WriteLine("Первое комплексное число: " + xSt.ToString());
+            Console.WriteLine("Второе комплексное число: " + ySt.ToString());
+            Console.WriteLine("Сумма: {0}", xSt.Plus(ySt).ToString());
+            Console.WriteLine("Разность: {0}", xSt.Minus(ySt).ToString());
+            Console.WriteLine("Произведение: {0}", xSt.Multi(ySt).ToString());
+            Console.WriteLine("Частное: {0}", xSt.Divide(ySt).ToString());
+            Console.WriteLine("================================");
+            Console.WriteLine("Экземпляры класса ComplexCl\n");
+            ComplexCl xCl = new ComplexCl();
+            ComplexCl yCl = new ComplexCl();
+            xCl.Re = re1;
+            xCl.Im = im1;
+            yCl.Re = re2;
+            yCl.Im = im2;
+            Console.WriteLine("Первое комплексное число: " + xCl.ToString());
+            Console.WriteLine("Второе комплексное число: " + yCl.ToString());
+            Console.WriteLine("Сумма: {0}", xCl.Plus(yCl).ToString());
+            Console.WriteLine("Разность: {0}", xCl.Minus(yCl).ToString());
+            Console.WriteLine("Произведение: {0}", xCl.Multi(yCl).ToString());
+            Console.WriteLine("Частное: {0}", xCl.Divide(yCl).ToString());
         }
 
         #endregion
@@ -126,7 +147,22 @@ namespace HomeWork
 
         public string ToString()
         {
-            return (im < 0) ? re + " - " + Math.Abs(im) + "i" : re + " + " + im + "i";
+            if (im == 0 && re == 0)
+            {
+                return "0";
+            }
+            if (im == 0)
+            {
+                return $"{re}";
+            }
+            else if (re == 0)
+            {
+                return im + "i";
+            }
+            else
+            {
+                return (im < 0) ? re + " - " + Math.Abs(im) + "i" : re + " + " + im + "i";
+            }
         }
     }
 
@@ -194,7 +230,7 @@ namespace HomeWork
             return new ComplexCl(im, re);
         }
 
-        public ComplexCl Devide(ComplexCl x)
+        public ComplexCl Divide(ComplexCl x)
         {
             double denominator = Math.Pow(x.Re, 2) + Math.Pow(x.Im, 2);
             double im = (x.Re * _im - _re * x.Im) / denominator;
@@ -204,7 +240,22 @@ namespace HomeWork
 
         public string ToString()
         {
-            return (_im < 0) ? _re + " - " + Math.Abs(_im) + "i" : _re + " + " + _im + "i";
+            if (_im == 0 && _re == 0)
+            {
+                return "0";
+            }
+            if (_im == 0)
+            {
+                return $"{_re}";
+            }
+            else if (_re == 0)
+            {
+                return _im + "i";
+            }
+            else
+            {
+                return (_im < 0) ? _re + " - " + Math.Abs(_im) + "i" : _re + " + " + _im + "i";
+            }
         }
     }
 }
