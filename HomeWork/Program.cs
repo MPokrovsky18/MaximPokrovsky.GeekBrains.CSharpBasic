@@ -9,10 +9,10 @@ namespace HomeWork
     {
         static void Main(string[] args)
         {
-            ConsoleHelper.StartSettings("Начало программы");
-            ShowMenu();
-            Console.Clear();
-            Console.WriteLine("Программа завершена.");
+            //ConsoleHelper.StartSettings("Начало программы");
+            //ShowMenu();
+            //Console.Clear();
+            //Console.WriteLine("Программа завершена.");
             ConsoleHelper.Pause();
         }
 
@@ -55,5 +55,50 @@ namespace HomeWork
 
         #endregion
 
+        #region Task 01
+
+        /*
+            а)  Дописать структуру Complex, добавив метод вычитания комплексных чисел.
+                Продемонстрировать работу структуры.
+            б)  Дописать класс Complex, добавив методы вычитания и произведения чисел. Проверить работу класса.
+            в) Добавить диалог с использованием switch демонстрирующий работу класса.
+         */
+
+        static void Task1(string taskName)
+        {
+            ConsoleHelper.StartSettings(taskName);
+
+        }
+
+        #endregion
+
     }
+
+    public struct Complex
+    {
+        public double im;
+        public double re;
+
+        public Complex Plus(Complex x)
+        {
+            Complex y;
+            y.im = im + x.im;
+            y.re = re + x.re;
+            return y;
+        }
+
+        public Complex Multi(Complex x)
+        {
+            Complex y;
+            y.im = re * x.im + im * x.re;
+            y.re = re * x.re - im * x.im;
+            return y;
+        }
+
+        public string ToString()
+        {
+            return re + "+" + im + "i";
+        }
+    }
+
 }
