@@ -217,7 +217,7 @@ namespace HomeWork
                     {
                         sum += userInput;
                     }
-                    else if(userInput == 0)
+                    else if (userInput == 0)
                     {
                         isCompleted = true;
                         Console.WriteLine("Ввод окончен.");
@@ -233,6 +233,116 @@ namespace HomeWork
         }
 
         #endregion
+
+        #region Task 03
+
+        /*
+         
+        *   Описать класс дробей — рациональных чисел, являющихся отношением двух целых чисел. 
+            Предусмотреть методы сложения, вычитания, умножения и деления дробей. Написать программу, 
+            демонстрирующую все разработанные элементы класса.
+
+            Добавить свойства типа int для доступа к числителю и знаменателю;
+            Добавить свойство типа double только на чтение, чтобы получить десятичную дробь числа; 
+
+        **  Добавить проверку, чтобы знаменатель не равнялся 0. Выбрасывать исключение ArgumentException("Знаменатель не может быть равен 0"); 
+        
+        *** Добавить упрощение дробей.
+         
+         */
+
+        static void Task3(string taskName)
+        {
+
+        }
+
+        #endregion
+
+    }
+
+    public class QNumber
+    {
+        private int _m;
+        private int _n;
+
+        public int M
+        {
+            get
+            {
+                return _m;
+            }
+            set
+            {
+                _m = value;
+            }
+        }
+        public int N
+        {
+            get
+            {
+                return _n;
+            }
+            set
+            {
+                try
+                {
+                    if (value == 0)
+                    {
+                        throw new ArgumentException("Делить на ноль нельзя! Делителю будет присвоено значение 1");
+                    }
+
+                    _n = value;
+                }
+                catch (ArgumentException exception)
+                {
+                    Console.WriteLine(exception.Message);
+                    _n = 1;
+                }
+            }
+        }
+        public double Decimal
+        {
+            get
+            {
+                return (double)_m / _n;
+            }
+        }
+
+        public QNumber(int m, int n = 1)
+        {
+            if (n < 0)
+            {
+                m *= -1;
+                n *= -1;
+            }
+
+            N = n;
+            _m = m;
+        }
+
+        public QNumber()
+        {
+            _m = 1;
+            _n = 1;
+        }
+
+        public override string ToString()
+        {
+            if (_m == 0)
+            {
+                return "0";
+            }
+            else if (_m % _n == 0)
+            {
+                return $"{_m / _n}";
+            }
+            else if (_n % 10 == 0)
+            {
+                return Decimal.ToString();
+            }
+
+            return $"{_m}/{_n}";
+        }
     }
 
     public struct ComplexSt
