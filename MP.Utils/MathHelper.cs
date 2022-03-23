@@ -1,4 +1,7 @@
-﻿namespace MP.Utils
+﻿using System;
+
+
+namespace MP.Utils
 {
     public class MathHelper
     {
@@ -19,6 +22,18 @@
          public static bool CheckOddNumber(int number)
         {
             return number % 2 != 0;
+        }
+
+        public static int GetMaxCommonDivisor(int a, int b)
+        {
+            while (b != 0)
+            {
+                int c = a % b;
+                a = b;
+                b = c;
+            }
+
+            return Math.Abs(a);
         }
     }
 }

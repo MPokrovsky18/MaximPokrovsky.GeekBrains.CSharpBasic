@@ -9,10 +9,10 @@ namespace HomeWork
     {
         static void Main(string[] args)
         {
-            //ConsoleHelper.StartSettings("Начало программы");
-            //ShowMenu();
-            //Console.Clear();
-            //Console.WriteLine("Программа завершена.");
+            ConsoleHelper.StartSettings("Начало программы");
+            ShowMenu();
+            Console.Clear();
+            Console.WriteLine("Программа завершена.");
             ConsoleHelper.Pause();
         }
 
@@ -22,7 +22,7 @@ namespace HomeWork
         {
             string nameTask1 = "Комплексные числа";
             string nameTask2 = "Сумма нечетных чисел";
-            string nameTask3 = "";
+            string nameTask3 = "Дроби";
 
             bool isExecute = true;
 
@@ -41,6 +41,7 @@ namespace HomeWork
                         Task2(nameTask2);
                         break;
                     case "3":
+                        Task3(nameTask3);
                         break;
                     case "0":
                         isExecute = false;
@@ -115,23 +116,23 @@ namespace HomeWork
             while (isCompleted == false)
             {
                 Console.Clear();
-                Console.WriteLine("Комплексных числа: " + x.ToString() + " и " + y.ToString());
+                Console.WriteLine("Комплексных числа: " + x + " и " + y);
                 Console.WriteLine("Выберите операцию: ");
                 Console.Write("1. Сложение\n2. Вычетание\n3. Умножение\n4. Деление\n0. Завершить операции\nВведите номер операции: ");
 
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        Console.WriteLine("Сумма чисел: {0}", x.Plus(y).ToString());
+                        Console.WriteLine("Сумма чисел: {0}", x.Plus(y));
                         break;
                     case "2":
-                        Console.WriteLine("Разность чисел: {0}", x.Minus(y).ToString());
+                        Console.WriteLine("Разность чисел: {0}", x.Minus(y));
                         break;
                     case "3":
-                        Console.WriteLine("Произведение чисел: {0}", x.Multi(y).ToString());
+                        Console.WriteLine("Произведение чисел: {0}", x.Multi(y));
                         break;
                     case "4":
-                        Console.WriteLine("Частное чисел: {0}", x.Divide(y).ToString());
+                        Console.WriteLine("Частное чисел: {0}", x.Divide(y));
                         break;
                     case "0":
                         isCompleted = true;
@@ -171,23 +172,23 @@ namespace HomeWork
         static void ShowResultsOfOperations(ComplexSt x, ComplexSt y)
         {
             Console.WriteLine("Структуры ComplexSt\n");
-            Console.WriteLine("Первое комплексное число: " + x.ToString());
-            Console.WriteLine("Второе комплексное число: " + y.ToString());
-            Console.WriteLine("Сумма: {0}", x.Plus(y).ToString());
-            Console.WriteLine("Разность: {0}", x.Minus(y).ToString());
-            Console.WriteLine("Произведение: {0}", x.Multi(y).ToString());
-            Console.WriteLine("Частное: {0}", x.Divide(y).ToString());
+            Console.WriteLine("Первое комплексное число: " + x);
+            Console.WriteLine("Второе комплексное число: " + y);
+            Console.WriteLine("Сумма: {0}", x.Plus(y));
+            Console.WriteLine("Разность: {0}", x.Minus(y));
+            Console.WriteLine("Произведение: {0}", x.Multi(y));
+            Console.WriteLine("Частное: {0}", x.Divide(y));
         }
 
         static void ShowResultsOfOperations(ComplexCl x, ComplexCl y)
         {
             Console.WriteLine("Экземпляры класса ComplexCl\n");
-            Console.WriteLine("Первое комплексное число: " + x.ToString());
-            Console.WriteLine("Второе комплексное число: " + y.ToString());
-            Console.WriteLine("Сумма: {0}", x.Plus(y).ToString());
-            Console.WriteLine("Разность: {0}", x.Minus(y).ToString());
-            Console.WriteLine("Произведение: {0}", x.Multi(y).ToString());
-            Console.WriteLine("Частное: {0}", x.Divide(y).ToString());
+            Console.WriteLine("Первое комплексное число: " + x);
+            Console.WriteLine("Второе комплексное число: " + y);
+            Console.WriteLine("Сумма: {0}", x.Plus(y));
+            Console.WriteLine("Разность: {0}", x.Minus(y));
+            Console.WriteLine("Произведение: {0}", x.Multi(y));
+            Console.WriteLine("Частное: {0}", x.Divide(y));
         }
 
         #endregion
@@ -253,11 +254,25 @@ namespace HomeWork
 
         static void Task3(string taskName)
         {
-
+            ConsoleHelper.StartSettings(taskName);
+            QNumber n1 = new QNumber(3, 4);
+            QNumber n2 = new QNumber(5, 7);
+            QNumber n3 = new QNumber(6, 8);
+            Console.WriteLine("Первое рациональное число: " + n1);
+            Console.WriteLine("В десятичном виде: " + n1.Decimal);
+            Console.WriteLine("Второе рациональное число: " + n2);
+            Console.WriteLine("В десятичном виде: " + n2.Decimal);
+            Console.WriteLine("Сумма: {0}", n1.Plus(n2));
+            Console.WriteLine("Разность: {0}", n1.Minus(n2));
+            Console.WriteLine("Произведение: {0}", n1.Multi(n2));
+            Console.WriteLine("Частное: {0}", n1.Divide(n2));
+            Console.WriteLine("Третье рациональное число: " + n3);
+            Console.WriteLine("Попробуем сократить.");
+            n3.Simplify();
+            Console.WriteLine("Результат сокращения: {0}", n3);
         }
 
         #endregion
-
     }
 
     public class QNumber
@@ -288,7 +303,7 @@ namespace HomeWork
                 {
                     if (value == 0)
                     {
-                        throw new ArgumentException("Делить на ноль нельзя! Делителю будет присвоено значение 1");
+                        throw new ArgumentException("Делить на ноль нельзя! Знаменателю будет присвоено значение 1");
                     }
 
                     _n = value;
@@ -298,6 +313,25 @@ namespace HomeWork
                     Console.WriteLine(exception.Message);
                     _n = 1;
                 }
+            }
+        }
+        public int IntegerPart
+        {
+            get
+            {
+                return _m / _n;
+            }
+        }
+        public QNumber FractionalPart
+        {
+            get
+            {
+                if (IntegerPart == 0)
+                {
+                    return this;
+                }
+
+                return new QNumber(Math.Abs(_m - (IntegerPart * _n)), _n);
             }
         }
         public double Decimal
@@ -326,6 +360,64 @@ namespace HomeWork
             _n = 1;
         }
 
+        public QNumber Plus(QNumber number)
+        {
+            int commonDenominator = N * number.N;
+            int resultNumerator = (M * number.N) + (number.M * N);
+            return new QNumber(resultNumerator, commonDenominator);
+        }
+
+        public QNumber Plus(int number)
+        {
+            return Plus(new QNumber(number));
+        }
+
+        public QNumber Minus(QNumber number)
+        {
+            int commonDenominator = N * number.N;
+            int resultNumerator = (M * number.N) - (number.M * N);
+            return new QNumber(resultNumerator, commonDenominator);
+        }
+
+        public QNumber Minus(int number)
+        {
+            return Minus(new QNumber(number));
+        }
+
+        public QNumber Multi(QNumber number)
+        {
+            return new QNumber(M * number.M, N * number.N);
+        }
+
+        public QNumber Multi(int number)
+        {
+            return Multi(new QNumber(number));
+        }
+
+        public QNumber Divide(QNumber number)
+        {
+            return new QNumber(M * number.N, N * number.M);
+        }
+
+        public QNumber Divide(int number)
+        {
+            return Divide(new QNumber(number));
+        }
+
+        public bool Simplify()
+        {
+            int divisor = MathHelper.GetMaxCommonDivisor(_m, _n);
+
+            if (divisor > 1)
+            {
+                _m /= divisor;
+                _n /= divisor;
+                return true;
+            }
+
+            return false;
+        }
+
         public override string ToString()
         {
             if (_m == 0)
@@ -339,6 +431,10 @@ namespace HomeWork
             else if (_n % 10 == 0)
             {
                 return Decimal.ToString();
+            }
+            else if (IntegerPart != 0)
+            {
+                return $"{IntegerPart}({FractionalPart})";
             }
 
             return $"{_m}/{_n}";
@@ -383,7 +479,7 @@ namespace HomeWork
             return y;
         }
 
-        public string ToString()
+        public override string ToString()
         {
             if (im == 0 && re == 0)
             {
@@ -476,7 +572,7 @@ namespace HomeWork
             return new ComplexCl(im, re);
         }
 
-        public string ToString()
+        public override string ToString()
         {
             if (_im == 0 && _re == 0)
             {
