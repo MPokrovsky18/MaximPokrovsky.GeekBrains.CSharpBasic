@@ -326,6 +326,17 @@ namespace HomeWork
             }
         }
 
+        public CoolArray(int length, int startValue, int step)
+        {
+            _array = new int[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                _array[i] = startValue;
+                startValue += step;
+            }
+        }
+
         public int Max
         {
             get
