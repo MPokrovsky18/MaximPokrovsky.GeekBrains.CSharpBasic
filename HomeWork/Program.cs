@@ -170,6 +170,7 @@ namespace HomeWork
         static void Task3(string taskName)
         {
             ConsoleHelper.StartSettings(taskName);
+            int[] arr1, arr2, arr3;
         }
 
         #endregion

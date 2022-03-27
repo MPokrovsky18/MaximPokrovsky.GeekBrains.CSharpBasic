@@ -58,24 +58,31 @@ namespace MP.Utils
 
         public static int[] GetArrayFromFile(string path)
         {
-            if (File.Exists(path) == false || File.ReadAllLines(path).Length == 0)
+            string[] lines;
+
+            if (File.Exists(path))
+            {
+                lines = File.ReadAllLines(path);
+
+                if (lines.Length == 0)
+                {
+                    return null;
+                }
+            }
+            else
             {
                 return null;
             }
 
-            StreamReader sr = new StreamReader(path);
+            int[] array = new int[lines.Length];
 
             try
             {
-                int lenght = int.Parse(sr.ReadLine());
-                int[] array = new int[lenght];
-
-                for (int i = 0; i < lenght; i++)
+                for (int i = 0; i < array.Length; i++)
                 {
-                    array[i] = int.Parse(sr.ReadLine());
+                    array[i] = int.Parse(lines[i]);
                 }
 
-                sr.Close();
                 return array;
             }
             catch (Exception exc)
@@ -109,7 +116,6 @@ namespace MP.Utils
 
             File.Create(path).Close();
             StreamWriter sw = new StreamWriter(path);
-            sw.WriteLine(array.Length);
 
             for (int i = 0; i < array.Length; i++)
             {
