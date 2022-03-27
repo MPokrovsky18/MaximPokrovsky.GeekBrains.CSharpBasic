@@ -9,9 +9,9 @@ namespace HomeWork
     {
         static void Main(string[] args)
         {
-            //ConsoleHelper.StartSettings("Начало программы");
-            //ShowMenu();
-            //Console.Clear();
+            ConsoleHelper.StartSettings("Начало программы");
+            ShowMenu();
+            Console.Clear();
             Console.WriteLine("Программа завершена.");
             ConsoleHelper.Pause();
         }
@@ -23,13 +23,15 @@ namespace HomeWork
             string nameTask1 = "Пары в массиве";
             string nameTask2 = "Статический класс для работы с массивом";
             string nameTask3 = "Класс для работы с одномерным массивом";
+            string nameTask4 = "Авторизация";
 
+            
             bool isExecute = true;
 
             while (isExecute)
             {
                 ConsoleHelper.StartSettings("Меню");
-                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n3. {nameTask3}\n\tДля выхода введите 0");
+                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n3. {nameTask3}\n4. {nameTask3}\n\tДля выхода введите 0");
                 Console.Write("Введите номер программы: ");
 
                 switch (Console.ReadLine())
@@ -42,6 +44,9 @@ namespace HomeWork
                         break;
                     case "3":
                         Task3(nameTask3);
+                        break;
+                    case "4":
+                        Task4(nameTask3);
                         break;
                     case "0":
                         isExecute = false;
@@ -197,6 +202,77 @@ namespace HomeWork
             Console.WriteLine("Частота вхождения каждого элемента в массиве " + nameof(arr2));
             arr2.ShowCountRepeatingElements();
             Console.WriteLine();
+        }
+
+        #endregion
+
+        #region Task 04
+
+        /*
+                
+                Решить задачу с логинами из урока 2, только логины и пароли считать из файла в массив. 
+                Создайте структуру Account, содержащую Login и Password.
+         
+         */
+
+        static void Task4(string taskName)
+        {
+            ConsoleHelper.StartSettings(taskName);
+
+            if (CheckAuthorization() == true)
+            {
+                Console.WriteLine("Доступ к программе открыт.");
+            }
+            else
+            {
+                Console.WriteLine("Доступ к программе закрыт.");
+            }
+        }
+
+        static bool VerifyLoginAndPassword(string enteredLogin, string enteredPassword)
+        {
+            string login = "root";
+            string password = "GeekBrains";
+            return enteredLogin == login && enteredPassword == password;
+        }
+
+        static bool CheckAuthorization()
+        {
+            int attemptsCount = 3;
+            bool isCorrectInput = false;
+            string userInputLogin;
+            string userInputPassword;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine($"Попыток авторизоваться: {attemptsCount}");
+                Console.WriteLine("======================");
+                Console.Write("Введите логин: ");
+                userInputLogin = Console.ReadLine();
+                Console.Write("Введите пароль: ");
+                userInputPassword = Console.ReadLine();
+                Console.WriteLine("======================");
+                isCorrectInput = VerifyLoginAndPassword(userInputLogin, userInputPassword);
+
+                if (isCorrectInput)
+                {
+                    Console.WriteLine("Авторизация выполнена успешно!");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Неверный логин или пароль.");
+                    attemptsCount--;
+                    ConsoleHelper.Pause();
+                }
+
+            }
+            while (attemptsCount > 0);
+
+            Console.Clear();
+            Console.WriteLine("Закончились попытки авторизации. Попробуйте позднее.");
+            return false;
         }
 
         #endregion
