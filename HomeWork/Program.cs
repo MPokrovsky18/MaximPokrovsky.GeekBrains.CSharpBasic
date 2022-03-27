@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using MP.Utils;
 
 
@@ -25,13 +26,13 @@ namespace HomeWork
             string nameTask3 = "Класс для работы с одномерным массивом";
             string nameTask4 = "Авторизация";
 
-            
+
             bool isExecute = true;
 
             while (isExecute)
             {
                 ConsoleHelper.StartSettings("Меню");
-                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n3. {nameTask3}\n4. {nameTask3}\n\tДля выхода введите 0");
+                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n3. {nameTask3}\n4. {nameTask4}\n\tДля выхода введите 0");
                 Console.Write("Введите номер программы: ");
 
                 switch (Console.ReadLine())
@@ -46,7 +47,7 @@ namespace HomeWork
                         Task3(nameTask3);
                         break;
                     case "4":
-                        Task4(nameTask3);
+                        Task4(nameTask4);
                         break;
                     case "0":
                         isExecute = false;
@@ -219,21 +220,116 @@ namespace HomeWork
         {
             ConsoleHelper.StartSettings(taskName);
 
-            if (CheckAuthorization() == true)
+            Console.WriteLine("1. Авторизоваться\n2. Создать новый аккаунт\n3. Выход\nОтвет: ");
+
+            switch (Console.ReadLine())
             {
-                Console.WriteLine("Доступ к программе открыт.");
-            }
-            else
-            {
-                Console.WriteLine("Доступ к программе закрыт.");
+                case "1":
+                    if (CheckAuthorization() == true)
+                    {
+                        Console.WriteLine("Доступ к программе открыт.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Доступ к программе закрыт.");
+                    }
+                    break;
+                case "2":
+                    try
+                    {
+                        Console.Write("Введите логин: ");
+                        string login = Console.ReadLine();
+                        Console.Write("Введите пароль: ");
+                        string password = Console.ReadLine();
+                        Account newAccount = new Account() { Login = login, Password = password };
+                        AddAccountData(newAccount);
+                    }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine(exception.Message);
+                    }
+
+                    break;
+                case "3":
+                    break;
+                default:
+                    Console.WriteLine("Некорректный ввод.");
+                    break;
             }
         }
 
-        static bool VerifyLoginAndPassword(string enteredLogin, string enteredPassword)
+        static bool VerifyLoginAndPassword(string enteredLogin, string enteredPassword, out Account currentAccount)
         {
-            string login = "root";
-            string password = "GeekBrains";
-            return enteredLogin == login && enteredPassword == password;
+            Account[] accounts = GetAllAccounts();
+
+            if (accounts != null)
+            {
+                foreach (Account account in accounts)
+                {
+                    if (account.Login == enteredLogin && account.Password == enteredPassword)
+                    {
+                        currentAccount = account;
+                        return true;
+                    }
+                }
+            }
+
+            currentAccount = new Account();
+            return false;
+        }
+
+        static Account[] GetAllAccounts()
+        {
+            string fileName = "accounts.dat";
+
+            if (File.Exists(fileName) == false)
+            {
+                return null;
+            }
+
+            string[] data = File.ReadAllLines(fileName);
+
+            if (data.Length == 0)
+            {
+                return null;
+            }
+
+            Account[] accounts = new Account[data.Length];
+
+            for (int i = 0; i < accounts.Length; i++)
+            {
+                string[] accauntData = data[i].Split(' ');
+                accounts[i].Login = accauntData[0];
+                accounts[i].Password = accauntData[1];
+            }
+
+            return accounts;
+        }
+
+        static void AddAccountData(Account account)
+        {
+            string fileName = "accounts.dat";
+
+            if (File.Exists(fileName) == false)
+            {
+                File.Create(fileName).Close();
+            }
+
+            Account[] accounts = GetAllAccounts();
+
+            foreach(Account acc in accounts)
+            {
+                if(account.Login == acc.Login)
+                {
+                    Console.WriteLine("Такой пользователь уже зарегистрирован.");
+                    return;
+                }
+            }
+
+            StreamWriter sw = new StreamWriter(fileName);
+            sw.WriteLine($"{account.Login} {account.Password}");
+            sw.Close();
+            Console.WriteLine("Аккаунт создан. Теперь вы можете авторизоваться.");
         }
 
         static bool CheckAuthorization()
@@ -253,11 +349,11 @@ namespace HomeWork
                 Console.Write("Введите пароль: ");
                 userInputPassword = Console.ReadLine();
                 Console.WriteLine("======================");
-                isCorrectInput = VerifyLoginAndPassword(userInputLogin, userInputPassword);
+                isCorrectInput = VerifyLoginAndPassword(userInputLogin, userInputPassword, out Account currentAccount);
 
                 if (isCorrectInput)
                 {
-                    Console.WriteLine("Авторизация выполнена успешно!");
+                    Console.WriteLine($"Авторизация выполнена успешно!\nТекущий пользователь: {currentAccount.Login}");
                     return true;
                 }
                 else
@@ -276,5 +372,46 @@ namespace HomeWork
         }
 
         #endregion
+    }
+
+    internal struct Account
+    {
+        private string _login;
+        private string _password;
+
+        public string Login
+        {
+            get
+            {
+                return _login;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Логин не может быть null или пустым");
+                }
+
+                value.Replace(" ", "");
+                _login = value;
+            }
+        }
+        public string Password
+        {
+            get
+            {
+                return _password;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Пароль не может быть null или пустым");
+                }
+
+                value.Replace(" ", "");
+                _password = value;
+            }
+        }
     }
 }
