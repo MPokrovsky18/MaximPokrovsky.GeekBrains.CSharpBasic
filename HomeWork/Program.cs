@@ -373,5 +373,17 @@ namespace HomeWork
                 Console.Write("{0,4}", el);
             }
         }
+
+        public int[] Inverse()
+        {
+            int[] inverseArray = new int[_array.Length];
+
+            for (int i = 0; i < inverseArray.Length; i++)
+            {
+                inverseArray[i] = -_array[i];
+            }
+
+            return inverseArray;
+        }
     }
 }
