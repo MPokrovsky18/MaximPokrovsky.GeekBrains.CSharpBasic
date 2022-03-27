@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -111,6 +112,28 @@ namespace MP.Utils
             for (int i = 0; i < _array.Length; i++)
             {
                 _array[i] *= multiplier;
+            }
+        }
+
+        public void ShowCountRepeatingElements()
+        {
+            Dictionary<int, int> counter = new Dictionary<int, int>();
+
+            foreach (int el in _array)
+            {
+                if (counter.ContainsKey(el))
+                {
+                    counter[el]++;
+                }
+                else
+                {
+                    counter.Add(el, 1);
+                }
+            }
+
+            foreach (KeyValuePair<int, int> i in counter)
+            {
+                Console.WriteLine($"\"{i.Key}\" - {i.Value} шт.");
             }
         }
 

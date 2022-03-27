@@ -12,7 +12,6 @@ namespace HomeWork
             //ConsoleHelper.StartSettings("Начало программы");
             //ShowMenu();
             //Console.Clear();
-            Task3("Класс для работы с одномерным массивом");
             Console.WriteLine("Программа завершена.");
             ConsoleHelper.Pause();
         }
@@ -23,7 +22,7 @@ namespace HomeWork
         {
             string nameTask1 = "Пары в массиве";
             string nameTask2 = "Статический класс для работы с массивом";
-            string nameTask3 = "";
+            string nameTask3 = "Класс для работы с одномерным массивом";
 
             bool isExecute = true;
 
@@ -42,6 +41,7 @@ namespace HomeWork
                         Task2(nameTask2);
                         break;
                     case "3":
+                        Task3(nameTask3);
                         break;
                     case "0":
                         isExecute = false;
@@ -172,8 +172,8 @@ namespace HomeWork
         {
             ConsoleHelper.StartSettings(taskName);
             MyArray arr1, arr2;
-            arr1 = new MyArray(10);
-            arr2 = new MyArray(10, 5, 3);
+            arr1 = new MyArray(20);
+            arr2 = new MyArray(20, 5, 3);
             Console.WriteLine($"Созданы массивы: {nameof(arr1)} и {nameof(arr2)}");
             Console.WriteLine();
             Console.WriteLine(nameof(arr1) + ": " + arr1);
@@ -189,6 +189,14 @@ namespace HomeWork
             Console.WriteLine($"Умножим массив {nameof(arr2)} на 5: ");
             arr2.Multi(5);
             Console.WriteLine(arr2);
+            Console.WriteLine();
+
+            Console.WriteLine("Частота вхождения каждого элемента в массиве " + nameof(arr1));
+            arr1.ShowCountRepeatingElements();
+            Console.WriteLine();
+            Console.WriteLine("Частота вхождения каждого элемента в массиве " + nameof(arr2));
+            arr2.ShowCountRepeatingElements();
+            Console.WriteLine();
         }
 
         #endregion
