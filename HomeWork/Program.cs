@@ -354,6 +354,25 @@ namespace HomeWork
             }
         }
 
+        public int MaxCount
+        {
+            get
+            {
+                int count = 0;
+                int max = Max;
+
+                foreach (int el in _array)
+                {
+                    if (el == max)
+                    {
+                        count++;
+                    }
+                }
+
+                return count;
+            }
+        }
+
         public int this[int i]
         {
             get
