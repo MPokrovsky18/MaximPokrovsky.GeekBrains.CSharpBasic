@@ -385,5 +385,13 @@ namespace HomeWork
 
             return inverseArray;
         }
+
+        public void Multi(int multiplier)
+        {
+            for (int i = 0; i < _array.Length; i++)
+            {
+                _array[i] *= multiplier;
+            }
+        }
     }
 }
