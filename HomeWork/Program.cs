@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using MP.Utils;
 
 
@@ -149,6 +150,30 @@ namespace HomeWork
         }
 
         #endregion
+
+        #region Task 03
+
+        /*
+         
+            а) Дописать класс для работы с одномерным массивом. 
+                    Реализовать конструктор, создающий массив определенного размера 
+                        и заполняющий массив числами от начального значения с заданным шагом. .
+            Создать свойство Sum, которое возвращает сумму элементов массива, метод Inverse, 
+                возвращающий новый массив с измененными знаками у всех элементов массива (старый массив, остается без изменений), 
+                метод Multi, умножающий каждый элемент массива на определённое число, 
+                свойство MaxCount, возвращающее количество максимальных элементов.
+            б)** Создать библиотеку содержащую класс для работы с массивом. 
+                    Продемонстрировать работу библиотеки
+            в) *** Подсчитать частоту вхождения каждого элемента в массив (коллекция Dictionary<int,int>)
+         
+         */
+
+        static void Task3(string taskName)
+        {
+            ConsoleHelper.StartSettings(taskName);
+        }
+
+        #endregion
     }
 
     internal static class StaticClass
@@ -264,6 +289,69 @@ namespace HomeWork
             }
 
             sw.Close();
+        }
+    }
+
+
+    internal class CoolArray
+    {
+        Random random = new Random();
+        private int[] _array;
+
+        public CoolArray(int length)
+        {
+            _array = new int[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                _array[i] = random.Next(1, 101);
+            }
+        }
+
+        public CoolArray(string filename)
+        {
+            if (File.Exists(filename))
+            {
+                string[] ss = File.ReadAllLines(filename);
+                _array = new int[ss.Length];
+
+                for (int i = 0; i < ss.Length; i++)
+                {
+                    _array[i] = int.Parse(ss[i]);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error load file");
+            }
+        }
+
+        public int Max
+        {
+            get
+            {
+                return _array.Max();
+            }
+        }
+
+        public int this[int i]
+        {
+            get
+            {
+                return _array[i];
+            }
+            set
+            {
+                _array[i] = value;
+            }
+        }
+
+        public void Print()
+        {
+            foreach (int el in _array)
+            {
+                Console.Write("{0,4}", el);
+            }
         }
     }
 }
