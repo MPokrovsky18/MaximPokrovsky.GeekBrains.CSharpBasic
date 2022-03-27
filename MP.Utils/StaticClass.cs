@@ -23,12 +23,12 @@ namespace MP.Utils
         {
             if (array != null)
             {
-                for (int i = 0; i < array.Length; i++)
+                foreach (int el in array)
                 {
-                    Console.Write("|" + array[i]);
+                    Console.Write("{0,4}", el);
                 }
 
-                Console.WriteLine("|");
+                Console.WriteLine();
             }
         }
 

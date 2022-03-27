@@ -120,7 +120,7 @@ namespace MP.Utils
 
             foreach (int el in _array)
             {
-                s += ("{0,4}", el);
+                s += $"{el,6}";
             }
 
             return s;

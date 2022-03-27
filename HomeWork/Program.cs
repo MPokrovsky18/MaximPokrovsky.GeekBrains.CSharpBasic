@@ -12,6 +12,7 @@ namespace HomeWork
             //ConsoleHelper.StartSettings("Начало программы");
             //ShowMenu();
             //Console.Clear();
+            Task3("Класс для работы с одномерным массивом");
             Console.WriteLine("Программа завершена.");
             ConsoleHelper.Pause();
         }
@@ -170,7 +171,24 @@ namespace HomeWork
         static void Task3(string taskName)
         {
             ConsoleHelper.StartSettings(taskName);
-            int[] arr1, arr2, arr3;
+            MyArray arr1, arr2;
+            arr1 = new MyArray(10);
+            arr2 = new MyArray(10, 5, 3);
+            Console.WriteLine($"Созданы массивы: {nameof(arr1)} и {nameof(arr2)}");
+            Console.WriteLine();
+            Console.WriteLine(nameof(arr1) + ": " + arr1);
+            Console.WriteLine(nameof(arr2) + ": " + arr2);
+            Console.WriteLine();
+            Console.WriteLine($"В {nameof(arr1)} максимальное число {arr1.Max} встречается в количестве: {arr1.MaxCount}");
+            Console.WriteLine($"Сумма всех элементов: {arr1.Sum}");
+            Console.WriteLine($"В {nameof(arr2)} максимальное число {arr2.Max} встречается в количестве: {arr2.MaxCount}");
+            Console.WriteLine($"Сумма всех элементов: {arr2.Sum}");
+            Console.WriteLine();
+            StaticClass.PrintArray(arr1.Inverse(), "Инверсия массива " + nameof(arr1) + ":");
+            Console.WriteLine();
+            Console.WriteLine($"Умножим массив {nameof(arr2)} на 5: ");
+            arr2.Multi(5);
+            Console.WriteLine(arr2);
         }
 
         #endregion
