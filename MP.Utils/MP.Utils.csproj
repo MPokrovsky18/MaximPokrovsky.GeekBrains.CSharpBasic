@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
     <Compile Include="Complex.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="MathHelper.cs" />
