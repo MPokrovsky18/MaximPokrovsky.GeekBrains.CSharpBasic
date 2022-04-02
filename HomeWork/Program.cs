@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using MP.Utils;
@@ -14,7 +15,7 @@ namespace HomeWork
             //ConsoleHelper.StartSettings("Начало программы");
             //ShowMenu();
             //Console.Clear();
-            Task2("Класс Message");
+            Task3("Анаграммы");
             Console.WriteLine("Программа завершена.");
             ConsoleHelper.Pause();
         }
@@ -25,7 +26,7 @@ namespace HomeWork
         {
             string nameTask1 = "Проверка логина";
             string nameTask2 = "Класс Message";
-            string nameTask3 = "";
+            string nameTask3 = "Анаграммы";
             string nameTask4 = "";
 
 
@@ -46,6 +47,7 @@ namespace HomeWork
                         Task2(nameTask2);
                         break;
                     case "3":
+                        Task3(nameTask3);
                         break;
                     case "4":
                         break;
@@ -163,12 +165,12 @@ namespace HomeWork
 
         static void Task2(string taskName)
         {
+            ConsoleHelper.StartSettings(taskName);
             string s = @"Сосны обступали тропу плотно, и, 
 хотя истыканное их верхушками небо светилось голубым, в лесу было сумрачно. 
 По тропинке вперёд бежали муравьи, большие, красные, по своим каким-то муравьиным делам.
 – Смотри, пап, им с нами по пути! – сказала Таня. – Наверное, они тоже на пляж собрались!
 Папа улыбнулся ей сверху.";
-
             Console.WriteLine("Получен текст:");
             Console.WriteLine(s);
             Console.WriteLine("----------------------------------------------------");
@@ -181,6 +183,77 @@ namespace HomeWork
             Console.WriteLine("Самые длинные слова в тексте:");
             Console.WriteLine(Message.GetLongestWordsList(s));
 
+        }
+
+        #endregion
+
+        #region Task 03
+
+        /*
+         
+                *Для двух строк написать метод, определяющий, является ли одна строка перестановкой другой.
+                Например: badc являются перестановкой abcd. 
+
+         */
+
+
+        static void Task3(string taskName)
+        {
+            ConsoleHelper.StartSettings(taskName);
+            string s1 = "badc";
+            string s2 = "abcd";
+            Console.Write($"Строка {s1} является перестановкой строки {s2}: ");
+            Console.WriteLine(CheckIsAnagrams(s1, s2));
+            s1 = "abcddd";
+            s2 = "adbdcd";
+            Console.Write($"Строка {s1} является перестановкой строки {s2}: ");
+            Console.WriteLine(CheckIsAnagrams(s1, s2));
+            s1 = "adbdcd";
+            s2 = "aabdcd";
+            Console.Write($"Строка {s1} является перестановкой строки {s2}: ");
+            Console.WriteLine(CheckIsAnagrams(s1, s2));
+        }
+
+        static bool CheckIsAnagrams(string s1, string s2)
+        {
+            if (s1.Length != s2.Length)
+            {
+                return false;
+            }
+
+            Dictionary<char, int> chars = new Dictionary<char, int>();
+
+            foreach (char c in s1.ToLower())
+            {
+                if (chars.ContainsKey(c) == false)
+                {
+                    chars.Add(c, 1);
+                }
+                else
+                {
+                    chars[c]++;
+                }
+            }
+
+            foreach (char c in s2.ToLower())
+            {
+                if (chars.ContainsKey(c) == false)
+                {
+                    return false;
+                }
+
+                chars[c]--;
+            }
+
+            foreach (int value in chars.Values)
+            {
+                if (value != 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         #endregion
