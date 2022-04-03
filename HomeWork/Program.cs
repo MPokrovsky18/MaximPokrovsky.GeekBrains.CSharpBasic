@@ -10,10 +10,9 @@ namespace HomeWork
     {
         static void Main(string[] args)
         {
-            //ConsoleHelper.StartSettings("Начало программы");
-            //ShowMenu();
-            //Console.Clear();
-            Task2("Минимум функции");
+            ConsoleHelper.StartSettings("Начало программы");
+            ShowMenu();
+            Console.Clear();
             Console.WriteLine("Программа завершена.");
             ConsoleHelper.Pause();
         }
@@ -24,8 +23,6 @@ namespace HomeWork
         {
             string nameTask1 = "Таблицы функций";
             string nameTask2 = "Минимум функции";
-            string nameTask3 = "";
-            string nameTask4 = "";
 
 
             bool isExecute = true;
@@ -33,7 +30,7 @@ namespace HomeWork
             while (isExecute)
             {
                 ConsoleHelper.StartSettings("Меню");
-                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n3. {nameTask3}\n4. {nameTask4}\n\tДля выхода введите 0");
+                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n\tДля выхода введите 0");
                 Console.Write("Введите номер программы: ");
 
                 switch (Console.ReadLine())
@@ -75,6 +72,7 @@ namespace HomeWork
 
         static void Task1(string taskName)
         {
+            ConsoleHelper.StartSettings(taskName);
             Console.WriteLine("Таблица функции 3*sin(x):");
             Table((a, x) => a * Math.Sin(x), 3, -2, 2);
             Console.WriteLine("Таблица функции 4*x^2:");
@@ -99,7 +97,7 @@ namespace HomeWork
 
         #endregion
 
-        #region
+        #region Task 02
 
         /*
          
