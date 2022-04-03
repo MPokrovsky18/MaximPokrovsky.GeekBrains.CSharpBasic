@@ -12,10 +12,9 @@ namespace HomeWork
     {
         static void Main(string[] args)
         {
-            //ConsoleHelper.StartSettings("Начало программы");
-            //ShowMenu();
-            //Console.Clear();
-            Task3("Анаграммы");
+            ConsoleHelper.StartSettings("Начало программы");
+            ShowMenu();
+            Console.Clear();
             Console.WriteLine("Программа завершена.");
             ConsoleHelper.Pause();
         }
@@ -27,15 +26,13 @@ namespace HomeWork
             string nameTask1 = "Проверка логина";
             string nameTask2 = "Класс Message";
             string nameTask3 = "Анаграммы";
-            string nameTask4 = "";
-
 
             bool isExecute = true;
 
             while (isExecute)
             {
                 ConsoleHelper.StartSettings("Меню");
-                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n3. {nameTask3}\n4. {nameTask4}\n\tДля выхода введите 0");
+                Console.WriteLine($"1. {nameTask1}\n2. {nameTask2}\n3. {nameTask3}\n\tДля выхода введите 0");
                 Console.Write("Введите номер программы: ");
 
                 switch (Console.ReadLine())
