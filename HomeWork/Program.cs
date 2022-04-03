@@ -23,7 +23,7 @@ namespace HomeWork
         static void ShowMenu()
         {
             string nameTask1 = "Таблицы функций";
-            string nameTask2 = "";
+            string nameTask2 = "Минимум функции";
             string nameTask3 = "";
             string nameTask4 = "";
 
@@ -42,6 +42,7 @@ namespace HomeWork
                         Task1(nameTask1);
                         break;
                     case "2":
+                        Task2(nameTask2);
                         break;
                     case "3":
                         break;
@@ -117,14 +118,70 @@ namespace HomeWork
         static void Task2(string taskName)
         {
             ConsoleHelper.StartSettings(taskName);
-            SaveFunc("data.bin", -100, 100, 0.5);
-            Console.WriteLine(Load("data.bin"));
-            Console.ReadKey();
+            string fileName = "data.bin";
+            Func[] funcs =
+            {
+                x => Math.Sin(x),
+                x => Math.Cos(x),
+                x => Math.Log(x),
+                x => Math.Pow(x, 2),
+                x => Math.Pow(x, 3)
+            };
+            string[] menuItems =
+            {
+                "1. Sin(x)",
+                "2. Cos(x)",
+                "3. Log(x)",
+                "4. x^2",
+                "5. x^3"
+            };
+            Console.WriteLine("Выберите функцию:");
+
+            foreach (string item in menuItems)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.Write("Ввод: ");
+
+            if (int.TryParse(Console.ReadLine(), out int userInput) && userInput > 0 && userInput <= menuItems.Length)
+            {
+                Console.WriteLine("================================");
+                Console.WriteLine("Определение отрезка для функции");
+
+                try
+                {
+                    Console.Write("От: ");
+                    double a = double.Parse(Console.ReadLine());
+                    Console.Write("До: ");
+                    double b = double.Parse(Console.ReadLine());
+                    SaveFunc(funcs[userInput - 1], fileName, a, b, 1);
+                    double[] numbers = Load(fileName, out double min);
+
+                    foreach (double d in numbers)
+                    {
+                        Console.Write($"{d}|");
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("Минимум функции: " + min);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Некорректный ввод.");
+            }
         }
 
         public static double F(double x) => x * x - 50 * x + 10;
 
-        public static void SaveFunc(string fileName, double a, double b, double h)
+        public delegate double Func(double x);
+
+        public static void SaveFunc(Func f, string fileName, double a, double b, double h)
         {
             FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
             BinaryWriter bw = new BinaryWriter(fs);
@@ -132,7 +189,7 @@ namespace HomeWork
 
             while (x <= b)
             {
-                bw.Write(F(x));
+                bw.Write(f(x));
                 x += h;
             }
 
@@ -140,26 +197,26 @@ namespace HomeWork
             fs.Close();
         }
 
-        public static double Load(string fileName)
+        public static double[] Load(string fileName, out double min)
         {
             FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             BinaryReader bw = new BinaryReader(fs);
-            double min = double.MaxValue;
-            double d;
+            min = double.MaxValue;
+            double[] values = new double[fs.Length / sizeof(double)];
 
-            for (int i = 0; i < fs.Length / sizeof(double); i++)
+            for (int i = 0; i < values.Length; i++)
             {
-                d = bw.ReadDouble();
+                values[i] = bw.ReadDouble();
 
-                if (d < min)
+                if (values[i] < min)
                 {
-                    min = d;
+                    min = values[i];
                 }
             }
 
             bw.Close();
             fs.Close();
-            return min;
+            return values;
         }
 
         #endregion
