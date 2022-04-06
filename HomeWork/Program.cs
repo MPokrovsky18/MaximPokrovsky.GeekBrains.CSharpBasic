@@ -23,8 +23,6 @@ namespace HomeWork
         {
             string nameTask1 = "Таблицы функций";
             string nameTask2 = "Минимум функции";
-
-
             bool isExecute = true;
 
             while (isExecute)
@@ -40,10 +38,6 @@ namespace HomeWork
                         break;
                     case "2":
                         Task2(nameTask2);
-                        break;
-                    case "3":
-                        break;
-                    case "4":
                         break;
                     case "0":
                         isExecute = false;
