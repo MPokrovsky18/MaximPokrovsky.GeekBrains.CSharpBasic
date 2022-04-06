@@ -45,6 +45,7 @@
     <Compile Include="Complex.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="MathHelper.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="MyArray.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticClass.cs" />
