@@ -64,6 +64,7 @@
             this.btnReset.TabIndex = 5;
             this.btnReset.Text = "Новая игра";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnMultiply
             // 
@@ -74,6 +75,7 @@
             this.btnMultiply.TabIndex = 6;
             this.btnMultiply.Text = "x2";
             this.btnMultiply.UseVisualStyleBackColor = true;
+            this.btnMultiply.Click += new System.EventHandler(this.btnMultiply_Click);
             // 
             // btnPlus
             // 
@@ -84,6 +86,7 @@
             this.btnPlus.TabIndex = 7;
             this.btnPlus.Text = "+1";
             this.btnPlus.UseVisualStyleBackColor = true;
+            this.btnPlus.Click += new System.EventHandler(this.btnPlus_Click);
             // 
             // Main
             // 
