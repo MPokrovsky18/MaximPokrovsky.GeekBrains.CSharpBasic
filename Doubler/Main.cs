@@ -27,6 +27,7 @@ namespace Doubler
     public partial class Main : Form
     {
         private Random _random = new Random();
+        private Stack<int> _buffer = new Stack<int>();
         private int _computerNumber;
         private int _userNumber;
         private int _stepCount;
@@ -57,13 +58,18 @@ namespace Doubler
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            _stepCount--;
-            UpdateGameState(_userNumber *= 2);
-            CheckWin();
+            if (_userNumber != 0)
+            {
+                _buffer.Push(_userNumber);
+                _stepCount--;
+                UpdateGameState(_userNumber *= 2);
+                CheckWin();
+            }
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
+            _buffer.Push(_userNumber);
             _stepCount--;
             UpdateGameState(++_userNumber);
             CheckWin();
@@ -112,6 +118,7 @@ namespace Doubler
 
         private void Reset()
         {
+            _buffer.Clear();
             _userNumber = 0;
             UpdateGameState(_userNumber, _random.Next(10, 30));
             MessageBox.Show($"Получите число {_computerNumber} за {_stepCount} шагов.");
@@ -141,6 +148,15 @@ namespace Doubler
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (_buffer.Count > 0)
+            {
+                _stepCount++;
+                UpdateGameState(_userNumber = _buffer.Pop());
+            }
         }
     }
 }

@@ -34,9 +34,10 @@
             this.btnMultiply = new System.Windows.Forms.Button();
             this.btnPlus = new System.Windows.Forms.Button();
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.btnStartGame = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnStartGame = new System.Windows.Forms.Button();
             this.lblStepCount = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             this.lblComputerNumber.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblComputerNumber.AutoSize = true;
             this.lblComputerNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblComputerNumber.Location = new System.Drawing.Point(12, 12);
+            this.lblComputerNumber.Location = new System.Drawing.Point(12, 104);
             this.lblComputerNumber.Name = "lblComputerNumber";
             this.lblComputerNumber.Size = new System.Drawing.Size(221, 29);
             this.lblComputerNumber.TabIndex = 3;
@@ -56,7 +57,7 @@
             this.lblUserNumber.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblUserNumber.AutoSize = true;
             this.lblUserNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblUserNumber.Location = new System.Drawing.Point(12, 196);
+            this.lblUserNumber.Location = new System.Drawing.Point(12, 161);
             this.lblUserNumber.Name = "lblUserNumber";
             this.lblUserNumber.Size = new System.Drawing.Size(213, 29);
             this.lblUserNumber.TabIndex = 4;
@@ -108,18 +109,6 @@
             this.pnlMenu.Size = new System.Drawing.Size(432, 303);
             this.pnlMenu.TabIndex = 8;
             // 
-            // btnStartGame
-            // 
-            this.btnStartGame.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnStartGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnStartGame.Location = new System.Drawing.Point(137, 48);
-            this.btnStartGame.Name = "btnStartGame";
-            this.btnStartGame.Size = new System.Drawing.Size(177, 50);
-            this.btnStartGame.TabIndex = 0;
-            this.btnStartGame.Text = "Играть";
-            this.btnStartGame.UseVisualStyleBackColor = true;
-            this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
-            // 
             // btnExit
             // 
             this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -132,16 +121,39 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // btnStartGame
+            // 
+            this.btnStartGame.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnStartGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnStartGame.Location = new System.Drawing.Point(137, 48);
+            this.btnStartGame.Name = "btnStartGame";
+            this.btnStartGame.Size = new System.Drawing.Size(177, 50);
+            this.btnStartGame.TabIndex = 0;
+            this.btnStartGame.Text = "Играть";
+            this.btnStartGame.UseVisualStyleBackColor = true;
+            this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
+            // 
             // lblStepCount
             // 
             this.lblStepCount.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblStepCount.AutoSize = true;
             this.lblStepCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblStepCount.Location = new System.Drawing.Point(12, 104);
+            this.lblStepCount.Location = new System.Drawing.Point(12, 12);
             this.lblStepCount.Name = "lblStepCount";
             this.lblStepCount.Size = new System.Drawing.Size(218, 29);
             this.lblStepCount.TabIndex = 2;
             this.lblStepCount.Text = "Осталось шагов:";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnCancel.Location = new System.Drawing.Point(17, 223);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(213, 59);
+            this.btnCancel.TabIndex = 9;
+            this.btnCancel.Text = "Отменить";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // Main
             // 
@@ -155,6 +167,7 @@
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.lblComputerNumber);
             this.Controls.Add(this.lblStepCount);
+            this.Controls.Add(this.btnCancel);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1000, 1000);
             this.MinimizeBox = false;
@@ -178,5 +191,6 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnStartGame;
         private System.Windows.Forms.Label lblStepCount;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
