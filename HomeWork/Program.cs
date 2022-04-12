@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using MP.Utils;
 
 
@@ -10,8 +11,9 @@ namespace HomeWork
         static void Main(string[] args)
         {
             ConsoleHelper.StartSettings("Начало программы");
-            ShowMenu();
-            Console.Clear();
+            //ShowMenu();
+            //Console.Clear();
+            Task1("Рефлексируем");
             Console.WriteLine("Программа завершена.");
             ConsoleHelper.Pause();
         }
@@ -47,6 +49,31 @@ namespace HomeWork
 
                 ConsoleHelper.Pause();
             }
+        }
+
+        #endregion
+
+        #region Task 01
+
+        /*
+         
+                С помощью рефлексии выведите все свойства структуры DateTime.
+         
+         */
+
+        static void Task1(string taskName)
+        {
+            ConsoleHelper.StartSettings(taskName);
+            Type dtType = typeof(DateTime);
+
+            Console.WriteLine($"Свойства структуры {dtType.Name}:");
+
+            foreach(PropertyInfo property in dtType.GetProperties())
+            {
+                Console.WriteLine($" - {property.Name};");
+            }
+
+            Console.WriteLine("===============================");
         }
 
         #endregion
