@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork", "HomeWork\HomeWo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP.Utils", "MP.Utils\MP.Utils.csproj", "{E963155E-A4A3-4D3C-BB56-F196A0A57ADC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doubler", "Doubler\Doubler.csproj", "{83336A31-209D-41D3-B6C3-DED314427EF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessNumber", "GuessNumber\GuessNumber.csproj", "{CADD9569-A4D7-48ED-8F2F-62730235355D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{E963155E-A4A3-4D3C-BB56-F196A0A57ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E963155E-A4A3-4D3C-BB56-F196A0A57ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E963155E-A4A3-4D3C-BB56-F196A0A57ADC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83336A31-209D-41D3-B6C3-DED314427EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83336A31-209D-41D3-B6C3-DED314427EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83336A31-209D-41D3-B6C3-DED314427EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83336A31-209D-41D3-B6C3-DED314427EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CADD9569-A4D7-48ED-8F2F-62730235355D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CADD9569-A4D7-48ED-8F2F-62730235355D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CADD9569-A4D7-48ED-8F2F-62730235355D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CADD9569-A4D7-48ED-8F2F-62730235355D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
