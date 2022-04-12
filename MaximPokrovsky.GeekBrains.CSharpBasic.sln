@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doubler", "Doubler\Doubler.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessNumber", "GuessNumber\GuessNumber.csproj", "{CADD9569-A4D7-48ED-8F2F-62730235355D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFforHW08", "WFforHW08\WFforHW08.csproj", "{B33D59DB-1CD4-4152-BE2A-D010B01DF5FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CADD9569-A4D7-48ED-8F2F-62730235355D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CADD9569-A4D7-48ED-8F2F-62730235355D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CADD9569-A4D7-48ED-8F2F-62730235355D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B33D59DB-1CD4-4152-BE2A-D010B01DF5FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B33D59DB-1CD4-4152-BE2A-D010B01DF5FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B33D59DB-1CD4-4152-BE2A-D010B01DF5FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B33D59DB-1CD4-4152-BE2A-D010B01DF5FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
