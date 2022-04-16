@@ -133,6 +133,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.nudNumber);
             this.panel1.Controls.Add(this.cbTrue);
             this.panel1.Controls.Add(this.btnSave);
