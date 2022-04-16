@@ -84,18 +84,21 @@
             this.miNew.Name = "miNew";
             this.miNew.Size = new System.Drawing.Size(224, 26);
             this.miNew.Text = "New";
+            this.miNew.Click += new System.EventHandler(this.miNew_Click);
             // 
             // miOpen
             // 
             this.miOpen.Name = "miOpen";
             this.miOpen.Size = new System.Drawing.Size(224, 26);
             this.miOpen.Text = "Open";
+            this.miOpen.Click += new System.EventHandler(this.miOpen_Click);
             // 
             // miSave
             // 
             this.miSave.Name = "miSave";
             this.miSave.Size = new System.Drawing.Size(224, 26);
             this.miSave.Text = "Save";
+            this.miSave.Click += new System.EventHandler(this.miSave_Click);
             // 
             // toolStripSeparator1
             // 
@@ -107,12 +110,14 @@
             this.miExit.Name = "miExit";
             this.miExit.Size = new System.Drawing.Size(224, 26);
             this.miExit.Text = "Exit";
+            this.miExit.Click += new System.EventHandler(this.miExit_Click);
             // 
             // miSaveAs
             // 
             this.miSaveAs.Name = "miSaveAs";
             this.miSaveAs.Size = new System.Drawing.Size(224, 26);
             this.miSaveAs.Text = "Save As";
+            this.miSaveAs.Click += new System.EventHandler(this.miSaveAs_Click);
             // 
             // toolStripDropDownButton2
             // 
@@ -122,7 +127,7 @@
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(55, 28);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(55, 24);
             this.toolStripDropDownButton2.Text = "Help";
             // 
             // miAboutProgramm
@@ -130,6 +135,7 @@
             this.miAboutProgramm.Name = "miAboutProgramm";
             this.miAboutProgramm.Size = new System.Drawing.Size(224, 26);
             this.miAboutProgramm.Text = "About BoNB";
+            this.miAboutProgramm.Click += new System.EventHandler(this.miAboutProgramm_Click);
             // 
             // panel1
             // 
@@ -165,6 +171,7 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDelete
             // 
@@ -176,6 +183,7 @@
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
@@ -187,6 +195,7 @@
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // cbTrue
             // 
@@ -205,9 +214,15 @@
             this.nudNumber.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.nudNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudNumber.Location = new System.Drawing.Point(398, 21);
+            this.nudNumber.Maximum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.nudNumber.Name = "nudNumber";
             this.nudNumber.Size = new System.Drawing.Size(64, 27);
             this.nudNumber.TabIndex = 4;
+            this.nudNumber.ValueChanged += new System.EventHandler(this.nudNumber_ValueChanged);
             // 
             // TrueFalseEditor
             // 
